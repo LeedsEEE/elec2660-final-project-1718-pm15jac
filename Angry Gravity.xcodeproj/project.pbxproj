@@ -1,0 +1,544 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FFBE7BA31FBB28210070C70B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE7BA21FBB28210070C70B /* main.m */; };
+		FFBE7BA61FBB28210070C70B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE7BA51FBB28210070C70B /* AppDelegate.m */; };
+		FFBE7BA81FBB28210070C70B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = FFBE7BA71FBB28210070C70B /* GameScene.sks */; };
+		FFBE7BAA1FBB28210070C70B /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = FFBE7BA91FBB28210070C70B /* Actions.sks */; };
+		FFBE7BAD1FBB28210070C70B /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE7BAC1FBB28210070C70B /* GameScene.m */; };
+		FFBE7BB01FBB28210070C70B /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE7BAF1FBB28210070C70B /* GameViewController.m */; };
+		FFBE7BB31FBB28210070C70B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFBE7BB11FBB28210070C70B /* Main.storyboard */; };
+		FFBE7BB51FBB28210070C70B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFBE7BB41FBB28210070C70B /* Assets.xcassets */; };
+		FFBE7BB81FBB28210070C70B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFBE7BB61FBB28210070C70B /* LaunchScreen.storyboard */; };
+		FFBE7BC31FBB28220070C70B /* Angry_GravityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE7BC21FBB28220070C70B /* Angry_GravityTests.m */; };
+		FFBE7BCE1FBB28220070C70B /* Angry_GravityUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE7BCD1FBB28220070C70B /* Angry_GravityUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FFBE7BBF1FBB28220070C70B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FFBE7B961FBB28210070C70B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FFBE7B9D1FBB28210070C70B;
+			remoteInfo = "Angry Gravity";
+		};
+		FFBE7BCA1FBB28220070C70B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FFBE7B961FBB28210070C70B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FFBE7B9D1FBB28210070C70B;
+			remoteInfo = "Angry Gravity";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FFBE7B9E1FBB28210070C70B /* Angry Gravity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Angry Gravity.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFBE7BA21FBB28210070C70B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FFBE7BA41FBB28210070C70B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FFBE7BA51FBB28210070C70B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FFBE7BA71FBB28210070C70B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		FFBE7BA91FBB28210070C70B /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		FFBE7BAB1FBB28210070C70B /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		FFBE7BAC1FBB28210070C70B /* GameScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		FFBE7BAE1FBB28210070C70B /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		FFBE7BAF1FBB28210070C70B /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		FFBE7BB21FBB28210070C70B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FFBE7BB41FBB28210070C70B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FFBE7BB71FBB28210070C70B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FFBE7BB91FBB28210070C70B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFBE7BBE1FBB28220070C70B /* Angry GravityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Angry GravityTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFBE7BC21FBB28220070C70B /* Angry_GravityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Angry_GravityTests.m; sourceTree = "<group>"; };
+		FFBE7BC41FBB28220070C70B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFBE7BC91FBB28220070C70B /* Angry GravityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Angry GravityUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFBE7BCD1FBB28220070C70B /* Angry_GravityUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Angry_GravityUITests.m; sourceTree = "<group>"; };
+		FFBE7BCF1FBB28220070C70B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FFBE7B9B1FBB28210070C70B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FFBE7BBB1FBB28220070C70B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FFBE7BC61FBB28220070C70B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FFBE7B951FBB28210070C70B = {
+			isa = PBXGroup;
+			children = (
+				FFBE7BA01FBB28210070C70B /* Angry Gravity */,
+				FFBE7BC11FBB28220070C70B /* Angry GravityTests */,
+				FFBE7BCC1FBB28220070C70B /* Angry GravityUITests */,
+				FFBE7B9F1FBB28210070C70B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FFBE7B9F1FBB28210070C70B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FFBE7B9E1FBB28210070C70B /* Angry Gravity.app */,
+				FFBE7BBE1FBB28220070C70B /* Angry GravityTests.xctest */,
+				FFBE7BC91FBB28220070C70B /* Angry GravityUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FFBE7BA01FBB28210070C70B /* Angry Gravity */ = {
+			isa = PBXGroup;
+			children = (
+				FFBE7BA41FBB28210070C70B /* AppDelegate.h */,
+				FFBE7BA51FBB28210070C70B /* AppDelegate.m */,
+				FFBE7BA71FBB28210070C70B /* GameScene.sks */,
+				FFBE7BA91FBB28210070C70B /* Actions.sks */,
+				FFBE7BAB1FBB28210070C70B /* GameScene.h */,
+				FFBE7BAC1FBB28210070C70B /* GameScene.m */,
+				FFBE7BAE1FBB28210070C70B /* GameViewController.h */,
+				FFBE7BAF1FBB28210070C70B /* GameViewController.m */,
+				FFBE7BB11FBB28210070C70B /* Main.storyboard */,
+				FFBE7BB41FBB28210070C70B /* Assets.xcassets */,
+				FFBE7BB61FBB28210070C70B /* LaunchScreen.storyboard */,
+				FFBE7BB91FBB28210070C70B /* Info.plist */,
+				FFBE7BA11FBB28210070C70B /* Supporting Files */,
+			);
+			path = "Angry Gravity";
+			sourceTree = "<group>";
+		};
+		FFBE7BA11FBB28210070C70B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FFBE7BA21FBB28210070C70B /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FFBE7BC11FBB28220070C70B /* Angry GravityTests */ = {
+			isa = PBXGroup;
+			children = (
+				FFBE7BC21FBB28220070C70B /* Angry_GravityTests.m */,
+				FFBE7BC41FBB28220070C70B /* Info.plist */,
+			);
+			path = "Angry GravityTests";
+			sourceTree = "<group>";
+		};
+		FFBE7BCC1FBB28220070C70B /* Angry GravityUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FFBE7BCD1FBB28220070C70B /* Angry_GravityUITests.m */,
+				FFBE7BCF1FBB28220070C70B /* Info.plist */,
+			);
+			path = "Angry GravityUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FFBE7B9D1FBB28210070C70B /* Angry Gravity */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FFBE7BD21FBB28220070C70B /* Build configuration list for PBXNativeTarget "Angry Gravity" */;
+			buildPhases = (
+				FFBE7B9A1FBB28210070C70B /* Sources */,
+				FFBE7B9B1FBB28210070C70B /* Frameworks */,
+				FFBE7B9C1FBB28210070C70B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Angry Gravity";
+			productName = "Angry Gravity";
+			productReference = FFBE7B9E1FBB28210070C70B /* Angry Gravity.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FFBE7BBD1FBB28220070C70B /* Angry GravityTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FFBE7BD51FBB28220070C70B /* Build configuration list for PBXNativeTarget "Angry GravityTests" */;
+			buildPhases = (
+				FFBE7BBA1FBB28220070C70B /* Sources */,
+				FFBE7BBB1FBB28220070C70B /* Frameworks */,
+				FFBE7BBC1FBB28220070C70B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FFBE7BC01FBB28220070C70B /* PBXTargetDependency */,
+			);
+			name = "Angry GravityTests";
+			productName = "Angry GravityTests";
+			productReference = FFBE7BBE1FBB28220070C70B /* Angry GravityTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FFBE7BC81FBB28220070C70B /* Angry GravityUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FFBE7BD81FBB28220070C70B /* Build configuration list for PBXNativeTarget "Angry GravityUITests" */;
+			buildPhases = (
+				FFBE7BC51FBB28220070C70B /* Sources */,
+				FFBE7BC61FBB28220070C70B /* Frameworks */,
+				FFBE7BC71FBB28220070C70B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FFBE7BCB1FBB28220070C70B /* PBXTargetDependency */,
+			);
+			name = "Angry GravityUITests";
+			productName = "Angry GravityUITests";
+			productReference = FFBE7BC91FBB28220070C70B /* Angry GravityUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FFBE7B961FBB28210070C70B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "University of Leeds";
+				TargetAttributes = {
+					FFBE7B9D1FBB28210070C70B = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+					FFBE7BBD1FBB28220070C70B = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = FFBE7B9D1FBB28210070C70B;
+					};
+					FFBE7BC81FBB28220070C70B = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = FFBE7B9D1FBB28210070C70B;
+					};
+				};
+			};
+			buildConfigurationList = FFBE7B991FBB28210070C70B /* Build configuration list for PBXProject "Angry Gravity" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FFBE7B951FBB28210070C70B;
+			productRefGroup = FFBE7B9F1FBB28210070C70B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FFBE7B9D1FBB28210070C70B /* Angry Gravity */,
+				FFBE7BBD1FBB28220070C70B /* Angry GravityTests */,
+				FFBE7BC81FBB28220070C70B /* Angry GravityUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FFBE7B9C1FBB28210070C70B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFBE7BB31FBB28210070C70B /* Main.storyboard in Resources */,
+				FFBE7BA81FBB28210070C70B /* GameScene.sks in Resources */,
+				FFBE7BB51FBB28210070C70B /* Assets.xcassets in Resources */,
+				FFBE7BB81FBB28210070C70B /* LaunchScreen.storyboard in Resources */,
+				FFBE7BAA1FBB28210070C70B /* Actions.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FFBE7BBC1FBB28220070C70B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FFBE7BC71FBB28220070C70B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FFBE7B9A1FBB28210070C70B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFBE7BB01FBB28210070C70B /* GameViewController.m in Sources */,
+				FFBE7BA61FBB28210070C70B /* AppDelegate.m in Sources */,
+				FFBE7BAD1FBB28210070C70B /* GameScene.m in Sources */,
+				FFBE7BA31FBB28210070C70B /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FFBE7BBA1FBB28220070C70B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFBE7BC31FBB28220070C70B /* Angry_GravityTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FFBE7BC51FBB28220070C70B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFBE7BCE1FBB28220070C70B /* Angry_GravityUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FFBE7BC01FBB28220070C70B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FFBE7B9D1FBB28210070C70B /* Angry Gravity */;
+			targetProxy = FFBE7BBF1FBB28220070C70B /* PBXContainerItemProxy */;
+		};
+		FFBE7BCB1FBB28220070C70B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FFBE7B9D1FBB28210070C70B /* Angry Gravity */;
+			targetProxy = FFBE7BCA1FBB28220070C70B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FFBE7BB11FBB28210070C70B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FFBE7BB21FBB28210070C70B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FFBE7BB61FBB28210070C70B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FFBE7BB71FBB28210070C70B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FFBE7BD01FBB28220070C70B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FFBE7BD11FBB28220070C70B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FFBE7BD31FBB28220070C70B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Angry Gravity/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "uk.ac.leeds.Angry-Gravity";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FFBE7BD41FBB28220070C70B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Angry Gravity/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "uk.ac.leeds.Angry-Gravity";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		FFBE7BD61FBB28220070C70B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Angry GravityTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "uk.ac.leeds.Angry-GravityTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Angry Gravity.app/Angry Gravity";
+			};
+			name = Debug;
+		};
+		FFBE7BD71FBB28220070C70B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Angry GravityTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "uk.ac.leeds.Angry-GravityTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Angry Gravity.app/Angry Gravity";
+			};
+			name = Release;
+		};
+		FFBE7BD91FBB28220070C70B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Angry GravityUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "uk.ac.leeds.Angry-GravityUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Angry Gravity";
+			};
+			name = Debug;
+		};
+		FFBE7BDA1FBB28220070C70B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Angry GravityUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "uk.ac.leeds.Angry-GravityUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Angry Gravity";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FFBE7B991FBB28210070C70B /* Build configuration list for PBXProject "Angry Gravity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFBE7BD01FBB28220070C70B /* Debug */,
+				FFBE7BD11FBB28220070C70B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FFBE7BD21FBB28220070C70B /* Build configuration list for PBXNativeTarget "Angry Gravity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFBE7BD31FBB28220070C70B /* Debug */,
+				FFBE7BD41FBB28220070C70B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FFBE7BD51FBB28220070C70B /* Build configuration list for PBXNativeTarget "Angry GravityTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFBE7BD61FBB28220070C70B /* Debug */,
+				FFBE7BD71FBB28220070C70B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FFBE7BD81FBB28220070C70B /* Build configuration list for PBXNativeTarget "Angry GravityUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFBE7BD91FBB28220070C70B /* Debug */,
+				FFBE7BDA1FBB28220070C70B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FFBE7B961FBB28210070C70B /* Project object */;
+}
