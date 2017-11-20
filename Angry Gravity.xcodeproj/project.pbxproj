@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FF3B267B1FC3432900A2302D /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = FF3B267A1FC3432900A2302D /* coin.png */; };
 		FFBE7BA31FBB28210070C70B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE7BA21FBB28210070C70B /* main.m */; };
 		FFBE7BA61FBB28210070C70B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE7BA51FBB28210070C70B /* AppDelegate.m */; };
 		FFBE7BA81FBB28210070C70B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = FFBE7BA71FBB28210070C70B /* GameScene.sks */; };
@@ -18,6 +19,11 @@
 		FFBE7BB81FBB28210070C70B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFBE7BB61FBB28210070C70B /* LaunchScreen.storyboard */; };
 		FFBE7BC31FBB28220070C70B /* Angry_GravityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE7BC21FBB28220070C70B /* Angry_GravityTests.m */; };
 		FFBE7BCE1FBB28220070C70B /* Angry_GravityUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE7BCD1FBB28220070C70B /* Angry_GravityUITests.m */; };
+		FFBE7BDD1FBB28630070C70B /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFBE7BDC1FBB28630070C70B /* SpriteKit.framework */; };
+		FFBE7BDF1FBB2C4B0070C70B /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBE7BDE1FBB2C4B0070C70B /* 0.png */; };
+		FFBE7BE11FBB3AD30070C70B /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBE7BE01FBB3AD30070C70B /* Arrow.png */; };
+		FFBE7BE31FBB3D630070C70B /* arrowReal.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBE7BE21FBB3D630070C70B /* arrowReal.png */; };
+		FFBE7BE51FBB4C900070C70B /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBE7BE41FBB4C900070C70B /* circle.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FF3B267A1FC3432900A2302D /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coin.png; path = ../../../coin.png; sourceTree = "<group>"; };
 		FFBE7B9E1FBB28210070C70B /* Angry Gravity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Angry Gravity.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFBE7BA21FBB28210070C70B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FFBE7BA41FBB28210070C70B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -58,6 +65,11 @@
 		FFBE7BC91FBB28220070C70B /* Angry GravityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Angry GravityUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFBE7BCD1FBB28220070C70B /* Angry_GravityUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Angry_GravityUITests.m; sourceTree = "<group>"; };
 		FFBE7BCF1FBB28220070C70B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFBE7BDC1FBB28630070C70B /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		FFBE7BDE1FBB2C4B0070C70B /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 0.png; path = ../../../../Downloads/0.png; sourceTree = "<group>"; };
+		FFBE7BE01FBB3AD30070C70B /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Arrow.png; path = ../../../../Downloads/Arrow.png; sourceTree = "<group>"; };
+		FFBE7BE21FBB3D630070C70B /* arrowReal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrowReal.png; path = ../../../../Downloads/arrowReal.png; sourceTree = "<group>"; };
+		FFBE7BE41FBB4C900070C70B /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = circle.png; path = ../../../../Downloads/circle.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFBE7BDD1FBB28630070C70B /* SpriteKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +105,7 @@
 				FFBE7BC11FBB28220070C70B /* Angry GravityTests */,
 				FFBE7BCC1FBB28220070C70B /* Angry GravityUITests */,
 				FFBE7B9F1FBB28210070C70B /* Products */,
+				FFBE7BDB1FBB28630070C70B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,9 +125,14 @@
 				FFBE7BA41FBB28210070C70B /* AppDelegate.h */,
 				FFBE7BA51FBB28210070C70B /* AppDelegate.m */,
 				FFBE7BA71FBB28210070C70B /* GameScene.sks */,
+				FFBE7BDE1FBB2C4B0070C70B /* 0.png */,
 				FFBE7BA91FBB28210070C70B /* Actions.sks */,
 				FFBE7BAB1FBB28210070C70B /* GameScene.h */,
 				FFBE7BAC1FBB28210070C70B /* GameScene.m */,
+				FF3B267A1FC3432900A2302D /* coin.png */,
+				FFBE7BE41FBB4C900070C70B /* circle.png */,
+				FFBE7BE21FBB3D630070C70B /* arrowReal.png */,
+				FFBE7BE01FBB3AD30070C70B /* Arrow.png */,
 				FFBE7BAE1FBB28210070C70B /* GameViewController.h */,
 				FFBE7BAF1FBB28210070C70B /* GameViewController.m */,
 				FFBE7BB11FBB28210070C70B /* Main.storyboard */,
@@ -149,6 +168,14 @@
 				FFBE7BCF1FBB28220070C70B /* Info.plist */,
 			);
 			path = "Angry GravityUITests";
+			sourceTree = "<group>";
+		};
+		FFBE7BDB1FBB28630070C70B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FFBE7BDC1FBB28630070C70B /* SpriteKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,11 +284,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFBE7BDF1FBB2C4B0070C70B /* 0.png in Resources */,
+				FFBE7BE11FBB3AD30070C70B /* Arrow.png in Resources */,
 				FFBE7BB31FBB28210070C70B /* Main.storyboard in Resources */,
+				FFBE7BE51FBB4C900070C70B /* circle.png in Resources */,
 				FFBE7BA81FBB28210070C70B /* GameScene.sks in Resources */,
 				FFBE7BB51FBB28210070C70B /* Assets.xcassets in Resources */,
+				FF3B267B1FC3432900A2302D /* coin.png in Resources */,
 				FFBE7BB81FBB28210070C70B /* LaunchScreen.storyboard in Resources */,
 				FFBE7BAA1FBB28210070C70B /* Actions.sks in Resources */,
+				FFBE7BE31FBB3D630070C70B /* arrowReal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +553,7 @@
 				FFBE7BD41FBB28220070C70B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FFBE7BD51FBB28220070C70B /* Build configuration list for PBXNativeTarget "Angry GravityTests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +562,7 @@
 				FFBE7BD71FBB28220070C70B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FFBE7BD81FBB28220070C70B /* Build configuration list for PBXNativeTarget "Angry GravityUITests" */ = {
 			isa = XCConfigurationList;
@@ -537,6 +571,7 @@
 				FFBE7BDA1FBB28220070C70B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

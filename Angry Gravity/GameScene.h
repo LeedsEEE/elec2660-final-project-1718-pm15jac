@@ -7,7 +7,10 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+//#import <SKPhysicsBody/SKPhysicsBody.h>
 
 @interface GameScene : SKScene
+@property(nonatomic) NSInteger preferredFramesPerSecond;
+@property NSUInteger gravitySituation;
 
 @end
