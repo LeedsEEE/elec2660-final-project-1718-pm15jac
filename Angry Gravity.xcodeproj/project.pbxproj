@@ -29,6 +29,8 @@
 		FFBE7BE11FBB3AD30070C70B /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBE7BE01FBB3AD30070C70B /* Arrow.png */; };
 		FFBE7BE31FBB3D630070C70B /* arrowReal.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBE7BE21FBB3D630070C70B /* arrowReal.png */; };
 		FFBE7BE51FBB4C900070C70B /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBE7BE41FBB4C900070C70B /* circle.png */; };
+		FFE66D291FC497240045E005 /* cursor.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE66D281FC497240045E005 /* cursor.png */; };
+		FFE66D2D1FC49E300045E005 /* powerGrad.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE66D2C1FC49E300045E005 /* powerGrad.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,8 @@
 		FFBE7BE01FBB3AD30070C70B /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Arrow.png; path = ../../../../Downloads/Arrow.png; sourceTree = "<group>"; };
 		FFBE7BE21FBB3D630070C70B /* arrowReal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrowReal.png; path = ../../../../Downloads/arrowReal.png; sourceTree = "<group>"; };
 		FFBE7BE41FBB4C900070C70B /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = circle.png; path = ../../../../Downloads/circle.png; sourceTree = "<group>"; };
+		FFE66D281FC497240045E005 /* cursor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cursor.png; path = ../../../../Downloads/cursor.png; sourceTree = "<group>"; };
+		FFE66D2C1FC49E300045E005 /* powerGrad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = powerGrad.png; path = ../../../../Downloads/powerGrad.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,12 +139,14 @@
 			isa = PBXGroup;
 			children = (
 				FFBE7BA41FBB28210070C70B /* AppDelegate.h */,
+				FFE66D2C1FC49E300045E005 /* powerGrad.png */,
 				FFBE7BA51FBB28210070C70B /* AppDelegate.m */,
 				FFBE7BA71FBB28210070C70B /* GameScene.sks */,
 				FFBE7BDE1FBB2C4B0070C70B /* 0.png */,
 				FFBE7BA91FBB28210070C70B /* Actions.sks */,
 				FFBE7BAB1FBB28210070C70B /* GameScene.h */,
 				FFBE7BAC1FBB28210070C70B /* GameScene.m */,
+				FFE66D281FC497240045E005 /* cursor.png */,
 				FF171E391FC4477E0077E77F /* red-circle.png */,
 				FF171E371FC445AC0077E77F /* arrowCanon.png */,
 				FF171DEF1FC434360077E77F /* dial.png */,
@@ -304,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFBE7BDF1FBB2C4B0070C70B /* 0.png in Resources */,
+				FFE66D291FC497240045E005 /* cursor.png in Resources */,
 				FF171DF01FC434360077E77F /* dial.png in Resources */,
 				FFBE7BE11FBB3AD30070C70B /* Arrow.png in Resources */,
 				FF171E381FC445AC0077E77F /* arrowCanon.png in Resources */,
@@ -313,6 +320,7 @@
 				FFBE7BB51FBB28210070C70B /* Assets.xcassets in Resources */,
 				FF3B267B1FC3432900A2302D /* coin.png in Resources */,
 				FFBE7BB81FBB28210070C70B /* LaunchScreen.storyboard in Resources */,
+				FFE66D2D1FC49E300045E005 /* powerGrad.png in Resources */,
 				FF171E3A1FC4477E0077E77F /* red-circle.png in Resources */,
 				FFBE7BAA1FBB28210070C70B /* Actions.sks in Resources */,
 				FFBE7BE31FBB3D630070C70B /* arrowReal.png in Resources */,

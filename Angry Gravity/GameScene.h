@@ -13,5 +13,7 @@
 @property(nonatomic) NSInteger preferredFramesPerSecond;
 @property NSUInteger gravitySituation;
 @property float angel;
+@property NSDate* start;
+@property int lives;
 
 @end

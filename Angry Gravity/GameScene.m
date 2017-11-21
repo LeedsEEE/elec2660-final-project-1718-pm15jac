@@ -20,6 +20,9 @@
     SKSpriteNode *_dial;
     SKSpriteNode *_arrowCannon;
     SKSpriteNode *_LaunchButton; //Sprite from: https://goo.gl/LucRLq
+    SKSpriteNode *_arrowFire;
+    SKSpriteNode *_powerBar;
+    SKSpriteNode *_cursor;
 
 }
 
@@ -40,8 +43,8 @@
 }
 
 -(bool)coinContact{
-    float Ax=_arrow.position.x;
-    float Ay=_arrow.position.y;
+    float Ax=_arrowFire.position.x;
+    float Ay=_arrowFire.position.y;
     float Rx=_coin.position.x;
     float Ry=_coin.position.y;
     float r=(_coin.size.width)+5;
@@ -59,10 +62,10 @@
 
 
 -(int)gravityFind{
-    float Ax=_arrow.position.x;
-    float Ay=_arrow.position.y;
-    float Rx=_rock.position.x;
-    float Ry=_rock.position.y;
+    float Ax=_arrowFire.position.x;
+    float Ay=_arrowFire.position.y;
+    float Rx=_arrowFire.position.x;
+    float Ry=_arrowFire.position.y;
     float r=_gravityField.size.width/2;
     if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r){
         return 1;
@@ -76,6 +79,10 @@
 }
 
 -(void)initLevelOne{
+    
+    _lives =5;
+    
+    
     _gravityField = [SKSpriteNode spriteNodeWithImageNamed:@"circle.png"];
     _gravityField.position = CGPointMake(100,100);
     _gravityField.size =CGSizeMake(300, 300);
@@ -143,7 +150,7 @@
     
     
     _arrow = [SKSpriteNode spriteNodeWithImageNamed:@"arrowReal.png"];
-    _arrow.position = CGPointMake(-200,10);
+    _arrow.position = CGPointMake(400,400);
     _arrow.size =CGSizeMake(50, 10);
     _arrow.zRotation =M_PI;
     //_arrow.physicsBody.velocity = self.physicsBody.velocity;
@@ -157,6 +164,19 @@
     //[arrow.physicsBody applyImpulse: CGVectorMake(100, 0)];
     
     [self addChild: _arrow];
+    
+    _powerBar = [SKSpriteNode spriteNodeWithImageNamed:@"powerGrad.png"];
+    _powerBar.position = CGPointMake(150,-180);
+    _powerBar.size =CGSizeMake(400, 30);
+    
+    [self addChild: _powerBar];
+    
+    _cursor = [SKSpriteNode spriteNodeWithImageNamed:@"cursor.png"];
+    _cursor.position = CGPointMake(-50,-180);
+    _cursor.size =CGSizeMake(5, 30);
+    
+    [self addChild: _cursor];
+    
     
     [_rock runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:M_PI/14 duration:1]]];
     
@@ -193,15 +213,34 @@
 }
 
 - (void)touchUpAtPoint:(CGPoint)pos {
+    NSTimeInterval timeInterval = [_start timeIntervalSinceNow]; //identify how long since the user started pushing the button.
     float Ax=pos.x;
     float Ay=pos.y;
     float Rx=_LaunchButton.position.x;
     float Ry=_LaunchButton.position.y;
     float r=(_LaunchButton.size.width/2);
-    if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r){
-        _arrow.physicsBody.velocity = CGVectorMake(100*cosf(_angel), 100*sinf(_angel));
+    float strength = timeInterval*-150;
+    if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r && _lives>0){
+        _arrowFire =[_arrow copy];
+        _arrowFire.position=_arrowCannon.position;
+        _arrowFire.zRotation=_angel+M_PI;
+        [self addChild:_arrowFire];
+        _arrowFire.physicsBody.velocity = CGVectorMake(strength*cosf(_angel), strength*sinf(_angel));
+        _lives--;
         
     }
+}
+
+- (void)touchDownAtPoint:(CGPoint)pos {
+    //_arrow.physicsBody.velocity = CGVectorMake(-200,0);
+    _start = [NSDate date]; //log current time to evaluate how long the user holds the button
+    _cursor.physicsBody.velocity=CGVectorMake(20, 0);
+    
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    for (UITouch *t in touches) {[self touchDownAtPoint:[t locationInNode:self]];}
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     for (UITouch *t in touches) {[self touchMovedToPoint:[t locationInNode:self]];}
@@ -263,6 +302,8 @@
     _arrow.physicsBody.restitution=0.5;
     _arrow.physicsBody.linearDamping=0;
     _arrow.physicsBody.angularDamping=0;
+    
+    _arrow.position = CGPointMake(400,400);
     
     
     
