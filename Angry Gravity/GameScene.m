@@ -17,9 +17,21 @@
     SKSpriteNode *_gravityField;
     SKFieldNode *_radGravity;
     SKSpriteNode *_coin;
+    SKSpriteNode *_dial;
+    SKSpriteNode *_arrowCannon;
+    SKSpriteNode *_LaunchButton; //Sprite from: https://goo.gl/LucRLq
+
 }
 
 - (void)didMoveToView:(SKView *)view {
+    // Setup your scene here
+    
+    [self initLevelOne]; //initialize and configure the first level
+    
+    
+}
+
+- (void)sceneDidLoad: (SKScene*) newScene{
     // Setup your scene here
     
     [self initLevelOne]; //initialize and configure the first level
@@ -32,7 +44,7 @@
     float Ay=_arrow.position.y;
     float Rx=_coin.position.x;
     float Ry=_coin.position.y;
-    float r=(_coin.size.width/2)+12;
+    float r=(_coin.size.width)+5;
     if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r){
         return 1;
         
@@ -75,6 +87,15 @@
     [self addChild: _gravityField];
     
     
+    _arrowCannon = [SKSpriteNode spriteNodeWithImageNamed:@"arrowCanon.png"];
+    _arrowCannon.position = CGPointMake(-300,150);
+    _arrowCannon.size =CGSizeMake(30, 20);
+    
+    
+    [self addChild: _arrowCannon];
+
+    
+    
     _coin = [SKSpriteNode spriteNodeWithImageNamed:@"coin.png"];
     _coin.position = CGPointMake(150,100);
     _coin.size =CGSizeMake(20, 20);
@@ -84,10 +105,23 @@
     [self addChild: _coin];
     
     
+    _dial = [SKSpriteNode spriteNodeWithImageNamed:@"dial.png"];
+    _dial.position = CGPointMake(-250,-100);
+    _dial.size =CGSizeMake(200, 200);
+    //_dial.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_coin.size.width/2];
+    //_dial.physicsBody.dynamic = NO;
     
+    [self addChild: _dial];
     
+    _LaunchButton = [SKSpriteNode spriteNodeWithImageNamed:@"red-circle.png"];
+    _LaunchButton.position = CGPointMake(-100,-130);
+    _LaunchButton.size =CGSizeMake(50, 50);
+    //_dial.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_coin.size.width/2];
+    //_dial.physicsBody.dynamic = NO;
     
+    [self addChild: _LaunchButton];
     
+
     
     _rock = [SKSpriteNode spriteNodeWithImageNamed:@"0.png"];
     _rock.position = CGPointMake(100,100);
@@ -101,6 +135,7 @@
     _radGravity.strength = 1;
     _radGravity.falloff =1;
     [_rock addChild:_radGravity];
+    
     _radGravity.enabled=false;
     
     
@@ -117,7 +152,7 @@
     _arrow.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize: CGSizeMake(_arrow.size.width,
                                                                             _arrow.size.height)];
     
-    _arrow.physicsBody.velocity = CGVectorMake(100, 0);
+    //_arrow.physicsBody.velocity = CGVectorMake(100, 0); //uncomment this code to test
     _arrow.physicsBody.dynamic = YES;
     //[arrow.physicsBody applyImpulse: CGVectorMake(100, 0)];
     
@@ -126,6 +161,59 @@
     [_rock runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:M_PI/14 duration:1]]];
     
 }
+
+
+
+
+
+
+- (float)touchMovedToPoint:(CGPoint)pos {
+    float Ax=pos.x;
+    float Ay=pos.y;
+    float Rx=_dial.position.x;
+    float Ry=_dial.position.y;
+    float r=(_dial.size.width/2);
+    
+    
+  
+    
+    
+    
+    if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r){
+        _angel = atanf((Ay-Ry)/(Ax-Rx));
+        if (Ax-Rx<=0){
+            _angel = atanf((Ay-Ry)/(Ax-Rx))+M_PI;
+        }
+        _dial.zRotation=_angel;
+        _arrowCannon.zRotation=_angel;
+        
+    }
+    return _angel;
+
+}
+
+- (void)touchUpAtPoint:(CGPoint)pos {
+    float Ax=pos.x;
+    float Ay=pos.y;
+    float Rx=_LaunchButton.position.x;
+    float Ry=_LaunchButton.position.y;
+    float r=(_LaunchButton.size.width/2);
+    if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r){
+        _arrow.physicsBody.velocity = CGVectorMake(100*cosf(_angel), 100*sinf(_angel));
+        
+    }
+}
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+    for (UITouch *t in touches) {[self touchMovedToPoint:[t locationInNode:self]];}
+}
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    for (UITouch *t in touches) {[self touchUpAtPoint:[t locationInNode:self]];}
+}
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    for (UITouch *t in touches) {[self touchUpAtPoint:[t locationInNode:self]];}
+}
+
+
 
 
 - (void)nextLevel
@@ -175,6 +263,12 @@
     _arrow.physicsBody.restitution=0.5;
     _arrow.physicsBody.linearDamping=0;
     _arrow.physicsBody.angularDamping=0;
+    
+    
+    
+
+    
+
 
 
 

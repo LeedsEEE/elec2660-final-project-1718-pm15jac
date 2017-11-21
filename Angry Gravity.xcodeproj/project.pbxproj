@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FF171DEB1FC430D80077E77F /* SMRotaryWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF171DEA1FC430D80077E77F /* SMRotaryWheel.m */; };
+		FF171DEE1FC431A00077E77F /* SMRotaryProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = FF171DED1FC431A00077E77F /* SMRotaryProtocol.m */; };
+		FF171DF01FC434360077E77F /* dial.png in Resources */ = {isa = PBXBuildFile; fileRef = FF171DEF1FC434360077E77F /* dial.png */; };
+		FF171E381FC445AC0077E77F /* arrowCanon.png in Resources */ = {isa = PBXBuildFile; fileRef = FF171E371FC445AC0077E77F /* arrowCanon.png */; };
+		FF171E3A1FC4477E0077E77F /* red-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = FF171E391FC4477E0077E77F /* red-circle.png */; };
 		FF3B267B1FC3432900A2302D /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = FF3B267A1FC3432900A2302D /* coin.png */; };
 		FFBE7BA31FBB28210070C70B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE7BA21FBB28210070C70B /* main.m */; };
 		FFBE7BA61FBB28210070C70B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE7BA51FBB28210070C70B /* AppDelegate.m */; };
@@ -44,6 +49,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FF171DE91FC430D80077E77F /* SMRotaryWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRotaryWheel.h; sourceTree = "<group>"; };
+		FF171DEA1FC430D80077E77F /* SMRotaryWheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRotaryWheel.m; sourceTree = "<group>"; };
+		FF171DEC1FC431A00077E77F /* SMRotaryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRotaryProtocol.h; sourceTree = "<group>"; };
+		FF171DED1FC431A00077E77F /* SMRotaryProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRotaryProtocol.m; sourceTree = "<group>"; };
+		FF171DEF1FC434360077E77F /* dial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dial.png; path = ../../../../Downloads/dial.png; sourceTree = "<group>"; };
+		FF171E371FC445AC0077E77F /* arrowCanon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrowCanon.png; path = ../../../../Downloads/arrowCanon.png; sourceTree = "<group>"; };
+		FF171E391FC4477E0077E77F /* red-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "red-circle.png"; path = "../../../../Downloads/red-circle.png"; sourceTree = "<group>"; };
 		FF3B267A1FC3432900A2302D /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coin.png; path = ../../../coin.png; sourceTree = "<group>"; };
 		FFBE7B9E1FBB28210070C70B /* Angry Gravity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Angry Gravity.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFBE7BA21FBB28210070C70B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -129,12 +141,19 @@
 				FFBE7BA91FBB28210070C70B /* Actions.sks */,
 				FFBE7BAB1FBB28210070C70B /* GameScene.h */,
 				FFBE7BAC1FBB28210070C70B /* GameScene.m */,
+				FF171E391FC4477E0077E77F /* red-circle.png */,
+				FF171E371FC445AC0077E77F /* arrowCanon.png */,
+				FF171DEF1FC434360077E77F /* dial.png */,
 				FF3B267A1FC3432900A2302D /* coin.png */,
 				FFBE7BE41FBB4C900070C70B /* circle.png */,
 				FFBE7BE21FBB3D630070C70B /* arrowReal.png */,
 				FFBE7BE01FBB3AD30070C70B /* Arrow.png */,
 				FFBE7BAE1FBB28210070C70B /* GameViewController.h */,
 				FFBE7BAF1FBB28210070C70B /* GameViewController.m */,
+				FF171DE91FC430D80077E77F /* SMRotaryWheel.h */,
+				FF171DEA1FC430D80077E77F /* SMRotaryWheel.m */,
+				FF171DEC1FC431A00077E77F /* SMRotaryProtocol.h */,
+				FF171DED1FC431A00077E77F /* SMRotaryProtocol.m */,
 				FFBE7BB11FBB28210070C70B /* Main.storyboard */,
 				FFBE7BB41FBB28210070C70B /* Assets.xcassets */,
 				FFBE7BB61FBB28210070C70B /* LaunchScreen.storyboard */,
@@ -285,13 +304,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFBE7BDF1FBB2C4B0070C70B /* 0.png in Resources */,
+				FF171DF01FC434360077E77F /* dial.png in Resources */,
 				FFBE7BE11FBB3AD30070C70B /* Arrow.png in Resources */,
+				FF171E381FC445AC0077E77F /* arrowCanon.png in Resources */,
 				FFBE7BB31FBB28210070C70B /* Main.storyboard in Resources */,
 				FFBE7BE51FBB4C900070C70B /* circle.png in Resources */,
 				FFBE7BA81FBB28210070C70B /* GameScene.sks in Resources */,
 				FFBE7BB51FBB28210070C70B /* Assets.xcassets in Resources */,
 				FF3B267B1FC3432900A2302D /* coin.png in Resources */,
 				FFBE7BB81FBB28210070C70B /* LaunchScreen.storyboard in Resources */,
+				FF171E3A1FC4477E0077E77F /* red-circle.png in Resources */,
 				FFBE7BAA1FBB28210070C70B /* Actions.sks in Resources */,
 				FFBE7BE31FBB3D630070C70B /* arrowReal.png in Resources */,
 			);
@@ -320,8 +342,10 @@
 			files = (
 				FFBE7BB01FBB28210070C70B /* GameViewController.m in Sources */,
 				FFBE7BA61FBB28210070C70B /* AppDelegate.m in Sources */,
+				FF171DEE1FC431A00077E77F /* SMRotaryProtocol.m in Sources */,
 				FFBE7BAD1FBB28210070C70B /* GameScene.m in Sources */,
 				FFBE7BA31FBB28210070C70B /* main.m in Sources */,
+				FF171DEB1FC430D80077E77F /* SMRotaryWheel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

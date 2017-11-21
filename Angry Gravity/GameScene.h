@@ -12,5 +12,6 @@
 @interface GameScene : SKScene
 @property(nonatomic) NSInteger preferredFramesPerSecond;
 @property NSUInteger gravitySituation;
+@property float angel;
 
 @end
