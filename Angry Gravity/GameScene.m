@@ -227,15 +227,24 @@
         [self addChild:_arrowFire];
         _arrowFire.physicsBody.velocity = CGVectorMake(strength*cosf(_angel), strength*sinf(_angel));
         _lives--;
-        
+
+        [_cursor removeAllActions];
+        _cursor.position=CGPointMake(-50, -180);
     }
 }
 
 - (void)touchDownAtPoint:(CGPoint)pos {
-    //_arrow.physicsBody.velocity = CGVectorMake(-200,0);
-    _start = [NSDate date]; //log current time to evaluate how long the user holds the button
-    _cursor.physicsBody.velocity=CGVectorMake(20, 0);
-    
+    float Ax=pos.x;
+    float Ay=pos.y;
+    float Rx=_LaunchButton.position.x;
+    float Ry=_LaunchButton.position.y;
+    float r=(_LaunchButton.size.width/2);
+
+    if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r && _lives>0){
+        _start = [NSDate date]; //log current time to evaluate how long the user holds the button
+        [_cursor runAction:[SKAction moveToX:350 duration:5.0]];
+
+    }
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -302,6 +311,8 @@
     _arrow.physicsBody.restitution=0.5;
     _arrow.physicsBody.linearDamping=0;
     _arrow.physicsBody.angularDamping=0;
+    
+
     
     _arrow.position = CGPointMake(400,400);
     
