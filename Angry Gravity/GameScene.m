@@ -47,7 +47,7 @@
     float Ay=_arrowFire.position.y;
     float Rx=_coin.position.x;
     float Ry=_coin.position.y;
-    float r=(_coin.size.width)+5;
+    float r=(_coin.size.width)+40; //usually 5
     if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r){ //identifies if the distance between arrow and coin is very small
         return 1; //is touching
         
@@ -178,6 +178,14 @@
     [self addChild: _cursor];
     
     
+    SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"arial"];
+    label.text = @"lives: 5";
+    label.fontSize = 20;
+    label.fontColor = [SKColor whiteColor];
+    label.position = CGPointMake(270, 200);
+    [self addChild:label];
+    
+    
     [_rock runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:M_PI/14 duration:1]]];
     
 }
@@ -271,8 +279,8 @@
 {
     //[self runAction: self.buttonPressAnimation];
     SKTransition *reveal = [SKTransition doorwayWithDuration:3];
-    SKScene *newScene = [[SKScene alloc] initWithSize: CGSizeMake(1024,768)];
-    [self.scene.view presentScene: newScene transition: reveal];
+    SKScene *levelTwoScene = [[LevelTwoScene alloc] initWithSize: CGSizeMake(1024,768)];
+    [self.scene.view presentScene: levelTwoScene transition: reveal];
 
 }
 
@@ -317,8 +325,9 @@
     
 
     
-    _arrow.position = CGPointMake(400,400);
-    
+    if (_arrowFire.position.x<-360 || _arrowFire.position.x>360||_arrowFire.position.y<-230 ||_arrowFire.position.y>230){
+        [_arrowFire runAction:[SKAction removeFromParent]];
+    }
     
     
 

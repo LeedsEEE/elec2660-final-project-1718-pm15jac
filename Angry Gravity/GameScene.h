@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "LevelTwoScene.h"
 //#import <SKPhysicsBody/SKPhysicsBody.h>
 
 @interface GameScene : SKScene
