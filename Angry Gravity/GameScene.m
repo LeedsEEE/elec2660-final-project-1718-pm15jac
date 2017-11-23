@@ -42,18 +42,18 @@
     
 }
 
--(bool)coinContact{
+-(bool)coinContact{ //method to identify if an arrow has collided with the coin (could be improved: some collisions not detected if hit with end of arrow)
     float Ax=_arrowFire.position.x;
     float Ay=_arrowFire.position.y;
     float Rx=_coin.position.x;
     float Ry=_coin.position.y;
     float r=(_coin.size.width)+5;
-    if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r){
-        return 1;
+    if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r){ //identifies if the distance between arrow and coin is very small
+        return 1; //is touching
         
     }
     else{
-        return 0;
+        return 0; //is not touching
     }
 
     
@@ -61,13 +61,13 @@
 
 
 
--(int)gravityFind{
+-(int)gravityFind{ //method to identify what gravity state the arrow is in
     float Ax=_arrowFire.position.x;
     float Ay=_arrowFire.position.y;
     float Rx=_arrowFire.position.x;
     float Ry=_arrowFire.position.y;
     float r=_gravityField.size.width/2;
-    if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r){
+    if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r){//identifies if the distance between arrow is less than radius
         return 1;
     
     }
@@ -78,7 +78,7 @@
     
 }
 
--(void)initLevelOne{
+-(void)initLevelOne{ //initialize the first level
     
     _lives =5;
     
@@ -221,6 +221,9 @@
     float r=(_LaunchButton.size.width/2);
     float strength = timeInterval*-150;
     if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r && _lives>0){
+        if (strength<-750){
+            strength=750;
+        }
         _arrowFire =[_arrow copy];
         _arrowFire.position=_arrowCannon.position;
         _arrowFire.zRotation=_angel+M_PI;
