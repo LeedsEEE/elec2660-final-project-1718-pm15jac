@@ -283,6 +283,7 @@
     SKTransition *reveal = [SKTransition doorwayWithDuration:3];
     SKScene *levelTwoScene = [[LevelTwoScene alloc] initWithSize: self.scene.size];
     levelTwoScene.scaleMode =SKSceneScaleModeAspectFill;
+    levelTwoScene.anchorPoint=CGPointMake(0.5, 0.5);
     [self.scene.view presentScene: levelTwoScene transition: reveal];
 
 

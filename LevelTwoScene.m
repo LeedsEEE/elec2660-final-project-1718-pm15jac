@@ -27,7 +27,6 @@
     
 }
 
-
 - (void)didMoveToView:(SKView *)view {
     
 
@@ -45,7 +44,7 @@
     [self addChild: _gravityFieldHigh];
     
     _gravityFieldLow =[_gravityFieldHigh copy];
-    _gravityFieldLow.position = CGPointMake(-50,100);
+    _gravityFieldLow.position = CGPointMake(100,-50);
     [self addChild: _gravityFieldLow];
     
     
