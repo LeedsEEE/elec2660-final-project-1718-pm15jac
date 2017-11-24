@@ -10,8 +10,6 @@
 
 
 @implementation GameScene { //creating nodes in the scene
-    SKShapeNode *_spinnyNode;
-    SKLabelNode *_label;
     SKSpriteNode *_rock;
     SKSpriteNode *_arrow;
     SKSpriteNode *_gravityField;
@@ -23,6 +21,7 @@
     SKSpriteNode *_arrowFire;
     SKSpriteNode *_powerBar;
     SKSpriteNode *_cursor;
+    SKLabelNode *_LivesLabel;
 
 }
 
@@ -49,7 +48,7 @@
     float Ry=_coin.position.y;
     float r=(_coin.size.width)+40; //usually 5
     if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r){ //identifies if the distance between arrow and coin is very small
-        return 1; //is touching
+        return 1;
         
     }
     else{
@@ -58,6 +57,7 @@
 
     
 }
+
 
 
 
@@ -178,12 +178,13 @@
     [self addChild: _cursor];
     
     
-    SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"arial"];
-    label.text = @"lives: 5";
-    label.fontSize = 20;
-    label.fontColor = [SKColor whiteColor];
-    label.position = CGPointMake(270, 200);
-    [self addChild:label];
+    _LivesLabel = [SKLabelNode labelNodeWithFontNamed:@"arial"];
+    _LivesLabel.text = [NSString stringWithFormat:@"Lives: %i",_lives];
+    _LivesLabel.fontSize = 20;
+    _LivesLabel.fontColor = [SKColor whiteColor];
+    _LivesLabel.position = CGPointMake(300, 180);
+    
+    [self addChild:_LivesLabel];
     
     
     [_rock runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:M_PI/14 duration:1]]];
@@ -238,6 +239,7 @@
         [self addChild:_arrowFire];
         _arrowFire.physicsBody.velocity = CGVectorMake(strength*cosf(_angel), strength*sinf(_angel));
         _lives--;
+        _LivesLabel.text = [NSString stringWithFormat:@"Lives: %i",_lives];
 
         [_cursor removeAllActions];
         _cursor.position=CGPointMake(-50, -180);
@@ -279,8 +281,11 @@
 {
     //[self runAction: self.buttonPressAnimation];
     SKTransition *reveal = [SKTransition doorwayWithDuration:3];
-    SKScene *levelTwoScene = [[LevelTwoScene alloc] initWithSize: CGSizeMake(1024,768)];
+    SKScene *levelTwoScene = [[LevelTwoScene alloc] initWithSize: self.scene.size];
+    levelTwoScene.scaleMode =SKSceneScaleModeAspectFill;
     [self.scene.view presentScene: levelTwoScene transition: reveal];
+
+
 
 }
 
@@ -322,6 +327,7 @@
     _arrow.physicsBody.restitution=0.5;
     _arrow.physicsBody.linearDamping=0;
     _arrow.physicsBody.angularDamping=0;
+    _arrow.position=CGPointMake(400, 400);
     
 
     

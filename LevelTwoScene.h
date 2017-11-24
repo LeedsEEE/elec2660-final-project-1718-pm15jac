@@ -10,5 +10,6 @@
 #import "GameScene.h"
 
 @interface LevelTwoScene : SKScene
+@property int lives;
 
 @end
