@@ -8,6 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "LevelTwoScene.h"
+#import "LevelDataModel.h"
 //#import <SKPhysicsBody/SKPhysicsBody.h>
 
 @interface GameScene : SKScene
@@ -16,5 +17,8 @@
 @property float angel;
 @property NSDate* start;
 @property int lives;
+@property int level;
+
+@property (strong, nonatomic) LevelDataModel *data;
 
 @end

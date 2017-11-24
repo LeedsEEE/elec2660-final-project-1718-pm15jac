@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FF1228D71FC8535B00E4752A /* LevelDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF1228D61FC8535B00E4752A /* LevelDataModel.m */; };
+		FF1228DA1FC8539600E4752A /* model.m in Sources */ = {isa = PBXBuildFile; fileRef = FF1228D91FC8539600E4752A /* model.m */; };
 		FF171DF01FC434360077E77F /* dial.png in Resources */ = {isa = PBXBuildFile; fileRef = FF171DEF1FC434360077E77F /* dial.png */; };
 		FF171E381FC445AC0077E77F /* arrowCanon.png in Resources */ = {isa = PBXBuildFile; fileRef = FF171E371FC445AC0077E77F /* arrowCanon.png */; };
 		FF171E3A1FC4477E0077E77F /* red-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = FF171E391FC4477E0077E77F /* red-circle.png */; };
@@ -50,6 +52,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FF1228D51FC8535B00E4752A /* LevelDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelDataModel.h; sourceTree = "<group>"; };
+		FF1228D61FC8535B00E4752A /* LevelDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelDataModel.m; sourceTree = "<group>"; };
+		FF1228D81FC8539600E4752A /* model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = model.h; sourceTree = "<group>"; };
+		FF1228D91FC8539600E4752A /* model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = model.m; sourceTree = "<group>"; };
 		FF171DEF1FC434360077E77F /* dial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dial.png; path = ../../../../Downloads/dial.png; sourceTree = "<group>"; };
 		FF171E371FC445AC0077E77F /* arrowCanon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrowCanon.png; path = ../../../../Downloads/arrowCanon.png; sourceTree = "<group>"; };
 		FF171E391FC4477E0077E77F /* red-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "red-circle.png"; path = "../../../../Downloads/red-circle.png"; sourceTree = "<group>"; };
@@ -145,6 +151,10 @@
 				FFBE7BAC1FBB28210070C70B /* GameScene.m */,
 				FFDC56821FC7572C004CAB02 /* LevelTwoScene.h */,
 				FFDC56831FC7572C004CAB02 /* LevelTwoScene.m */,
+				FF1228D81FC8539600E4752A /* model.h */,
+				FF1228D91FC8539600E4752A /* model.m */,
+				FF1228D51FC8535B00E4752A /* LevelDataModel.h */,
+				FF1228D61FC8535B00E4752A /* LevelDataModel.m */,
 				FFE66D281FC497240045E005 /* cursor.png */,
 				FF171E391FC4477E0077E77F /* red-circle.png */,
 				FF171E371FC445AC0077E77F /* arrowCanon.png */,
@@ -345,8 +355,10 @@
 			files = (
 				FFDC56841FC7572C004CAB02 /* LevelTwoScene.m in Sources */,
 				FFBE7BB01FBB28210070C70B /* GameViewController.m in Sources */,
+				FF1228DA1FC8539600E4752A /* model.m in Sources */,
 				FFBE7BA61FBB28210070C70B /* AppDelegate.m in Sources */,
 				FFBE7BAD1FBB28210070C70B /* GameScene.m in Sources */,
+				FF1228D71FC8535B00E4752A /* LevelDataModel.m in Sources */,
 				FFBE7BA31FBB28210070C70B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

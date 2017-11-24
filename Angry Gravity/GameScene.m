@@ -11,9 +11,18 @@
 
 @implementation GameScene { //creating nodes in the scene
     SKSpriteNode *_rock;
-    SKSpriteNode *_arrow;
     SKSpriteNode *_gravityField;
     SKFieldNode *_radGravity;
+    
+    SKSpriteNode *_rock2;
+    SKSpriteNode *_gravityField2;
+    SKFieldNode *_radGravity2;
+    
+    SKSpriteNode *_rock3;
+    SKSpriteNode *_gravityField3;
+    SKFieldNode *_radGravity3;
+    
+    SKSpriteNode *_arrow;
     SKSpriteNode *_coin;
     SKSpriteNode *_dial;
     SKSpriteNode *_arrowCannon;
@@ -27,6 +36,7 @@
 
 - (void)didMoveToView:(SKView *)view {
     // Setup your scene here
+    
     
     [self initLevelOne]; //initialize and configure the first level
     
@@ -64,13 +74,27 @@
 -(int)gravityFind{ //method to identify what gravity state the arrow is in
     float Ax=_arrowFire.position.x;
     float Ay=_arrowFire.position.y;
-    float Rx=_arrowFire.position.x;
-    float Ry=_arrowFire.position.y;
+    
+    float Rx=_gravityField.position.x;
+    float Ry=_gravityField.position.y;
+    
     float r=_gravityField.size.width/2;
-    if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r){//identifies if the distance between arrow is less than radius
+    
+    
+    float Gx=_gravityField2.position.x;
+    float Gy=_gravityField2.position.y;
+
+    if ( powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r && powf(powf(Ay-Gy, 2)+powf(Ax-Gx, 2), 0.5)<=r ){
+        return 0;
+    }
+    else if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r){//identifies if the distance between arrow is less than radius
         return 1;
     
     }
+    else if (powf(powf(Ay-Gy, 2)+powf(Ax-Gx, 2), 0.5)<=r){
+        return 2;
+    }
+
     else{
         return 0;
     }
@@ -79,20 +103,63 @@
 }
 
 -(void)initLevelOne{ //initialize the first level
-    
+    self.data = [[LevelDataModel alloc] init];
     _lives =5;
-    
+    model *tempModel = [self.data.LevelData objectAtIndex:1];
     
     _gravityField = [SKSpriteNode spriteNodeWithImageNamed:@"circle.png"];
-    _gravityField.position = CGPointMake(100,100);
-    _gravityField.size =CGSizeMake(300, 300);
-    /*
-     gravityField.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:gravityField.size.width/2];
-     gravityField.physicsBody.dynamic = NO;
-     gravityField.physicsBody.collisionBitMask =0b0000;
-     */
+    _gravityField.position = tempModel.rock1Pos;
+    _gravityField.size =CGSizeMake(tempModel.gravSize, tempModel.gravSize);
     [self addChild: _gravityField];
     
+    _rock = [SKSpriteNode spriteNodeWithImageNamed:@"0.png"];
+    //_rock.position = CGPointMake(100,100);
+    _rock.size =CGSizeMake(70, 70);
+    _rock.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_rock.size.width/2];
+    _rock.physicsBody.dynamic = NO;
+    [_gravityField addChild: _rock];
+    
+    _radGravity =[SKFieldNode radialGravityField];
+    _radGravity.strength = 1;
+    _radGravity.falloff =1;
+    [_gravityField addChild:_radGravity];
+    
+    _radGravity.enabled=false;
+    
+    
+
+    
+    if (tempModel.rockAmount>=2){
+        _gravityField2 =[_gravityField copy];
+        
+        _gravityField2.position =tempModel.rock2Pos;
+        
+        //_rock2=[_rock copy];
+        _radGravity2=[_radGravity copy];
+        
+        
+        //[self addChild: rock2];
+        [_gravityField2 addChild: _radGravity2];
+        [self addChild: _gravityField2];
+        [_rock2 runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:-M_PI/14 duration:1]]];
+
+        
+        if (tempModel.rockAmount==3){
+            _gravityField3 =[_gravityField copy];
+            
+            _gravityField3.position =tempModel.rock3Pos;
+            
+            _rock3=[_rock copy];
+            _radGravity3=[_radGravity copy];
+            
+            [self addChild: _gravityField3];
+            //[self addChild: rock3];
+            //[self addChild: radGravity3];
+
+        }
+    }
+    
+    [_rock runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:M_PI/14 duration:1]]];
     
     _arrowCannon = [SKSpriteNode spriteNodeWithImageNamed:@"arrowCanon.png"];
     _arrowCannon.position = CGPointMake(-300,150);
@@ -104,7 +171,7 @@
     
     
     _coin = [SKSpriteNode spriteNodeWithImageNamed:@"coin.png"];
-    _coin.position = CGPointMake(150,100);
+    _coin.position = tempModel.coinPos;
     _coin.size =CGSizeMake(20, 20);
     _coin.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_coin.size.width/2];
     _coin.physicsBody.dynamic = NO;
@@ -115,42 +182,28 @@
     _dial = [SKSpriteNode spriteNodeWithImageNamed:@"dial.png"];
     _dial.position = CGPointMake(-250,-100);
     _dial.size =CGSizeMake(200, 200);
-    //_dial.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_coin.size.width/2];
-    //_dial.physicsBody.dynamic = NO;
     
     [self addChild: _dial];
     
     _LaunchButton = [SKSpriteNode spriteNodeWithImageNamed:@"red-circle.png"];
     _LaunchButton.position = CGPointMake(-100,-130);
     _LaunchButton.size =CGSizeMake(50, 50);
-    //_dial.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_coin.size.width/2];
-    //_dial.physicsBody.dynamic = NO;
     
     [self addChild: _LaunchButton];
     
 
     
-    _rock = [SKSpriteNode spriteNodeWithImageNamed:@"0.png"];
-    _rock.position = CGPointMake(100,100);
-    _rock.size =CGSizeMake(70, 70);
-    _rock.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_rock.size.width/2];
-    _rock.physicsBody.dynamic = NO;
-    [self addChild: _rock];
+
     
     
-    _radGravity =[SKFieldNode radialGravityField];
-    _radGravity.strength = 1;
-    _radGravity.falloff =1;
-    [_rock addChild:_radGravity];
-    
-    _radGravity.enabled=false;
+
     
     
     
     
     
     _arrow = [SKSpriteNode spriteNodeWithImageNamed:@"arrowReal.png"];
-    _arrow.position = CGPointMake(400,400);
+    //_arrow.position = CGPointMake(400,400);
     _arrow.size =CGSizeMake(50, 10);
     _arrow.zRotation =M_PI;
     //_arrow.physicsBody.velocity = self.physicsBody.velocity;
@@ -187,7 +240,6 @@
     [self addChild:_LivesLabel];
     
     
-    [_rock runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:M_PI/14 duration:1]]];
     
 }
 
@@ -281,6 +333,11 @@
 {
     //[self runAction: self.buttonPressAnimation];
     SKTransition *reveal = [SKTransition doorwayWithDuration:3];
+    //SKScene *GameScene = [[LevelTwoScene alloc] initWithSize: self.scene.size];
+
+    //[self.scene.view presentScene: GameScene transition: reveal];
+
+    
     SKScene *levelTwoScene = [[LevelTwoScene alloc] initWithSize: self.scene.size];
     levelTwoScene.scaleMode =SKSceneScaleModeAspectFill;
     levelTwoScene.anchorPoint=CGPointMake(0.5, 0.5);
@@ -294,10 +351,17 @@
 
     if ([self gravityFind] ==1){
         _radGravity.enabled=true;
+        _radGravity2.enabled=false;
 
+    }
+    if ([self gravityFind] ==2){
+        _radGravity.enabled=false;
+        _radGravity2.enabled=true;
+        
     }
     else if ([self gravityFind] ==0){
         _radGravity.enabled=false;
+        _radGravity2.enabled=false;
 
     
     }
@@ -337,7 +401,6 @@
     }
     
     
-
     
 
 
