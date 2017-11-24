@@ -18,6 +18,7 @@
 @property NSDate* start;
 @property int lives;
 @property int level;
+@property BOOL trigger;
 
 @property (strong, nonatomic) LevelDataModel *data;
 

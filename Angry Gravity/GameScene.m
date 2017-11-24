@@ -36,6 +36,7 @@
 
 - (void)didMoveToView:(SKView *)view {
     // Setup your scene here
+    _trigger=0;
     
     
     [self initLevelOne]; //initialize and configure the first level
@@ -43,7 +44,7 @@
     
 }
 
-- (void)sceneDidLoad: (SKScene*) newScene{
+- (void)sceneDidLoad: (SKScene*) LevelTwo{
     // Setup your scene here
     
     [self initLevelOne]; //initialize and configure the first level
@@ -105,7 +106,7 @@
 -(void)initLevelOne{ //initialize the first level
     self.data = [[LevelDataModel alloc] init];
     _lives =5;
-    model *tempModel = [self.data.LevelData objectAtIndex:1];
+    model *tempModel = [self.data.LevelData objectAtIndex:_level];
     
     _gravityField = [SKSpriteNode spriteNodeWithImageNamed:@"circle.png"];
     _gravityField.position = tempModel.rock1Pos;
@@ -331,18 +332,26 @@
 
 - (void)nextLevel
 {
-    //[self runAction: self.buttonPressAnimation];
-    SKTransition *reveal = [SKTransition doorwayWithDuration:3];
-    //SKScene *GameScene = [[LevelTwoScene alloc] initWithSize: self.scene.size];
+    if(_trigger==0){
+        //[self runAction: self.buttonPressAnimation];
+        _level=1;
+        SKTransition *reveal = [SKTransition doorwayWithDuration:3];
+        SKScene *levelTwo = [[GameScene alloc] initWithSize: self.scene.size];
+        levelTwo.anchorPoint=CGPointMake(0.5, 0.5);
+        levelTwo.scaleMode =SKSceneScaleModeAspectFill;
+        self.removeAllChildren;
+        //[self.scene.view presentScene: levelTwo transition: reveal];
+        [self initLevelOne];
+        _trigger=1;
 
-    //[self.scene.view presentScene: GameScene transition: reveal];
-
+    }
     
+    /*
     SKScene *levelTwoScene = [[LevelTwoScene alloc] initWithSize: self.scene.size];
     levelTwoScene.scaleMode =SKSceneScaleModeAspectFill;
     levelTwoScene.anchorPoint=CGPointMake(0.5, 0.5);
     [self.scene.view presentScene: levelTwoScene transition: reveal];
-
+*/
 
 
 }
@@ -367,6 +376,7 @@
     }
     
     if ([self coinContact] ==YES){
+        _level=1;
         _coin.physicsBody.dynamic = YES;
         [_coin runAction:[SKAction fadeOutWithDuration:2.0]];
         [_coin runAction:[SKAction scaleTo:2.0 duration:2.0]];
