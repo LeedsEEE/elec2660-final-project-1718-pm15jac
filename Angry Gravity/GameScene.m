@@ -13,10 +13,14 @@
     SKSpriteNode *_rock;
     SKFieldNode *_radGravity;
     
-    SKLabelNode *_titleLabel;
-    SKLabelNode *_playLabel;
-    SKLabelNode *_instructionsLabel;
-    SKLabelNode *_exitLabel;
+    
+    SKSpriteNode *_aggravated;
+    SKSpriteNode *_plus;
+    SKSpriteNode *_gravitated;
+    SKSpriteNode *_play;
+    SKSpriteNode *_instructions;
+    SKSpriteNode *_exit;
+    SKSpriteNode *_instructionText;
 
 }
 
@@ -47,59 +51,91 @@
 
 -(void)initLevel{ //initialize the first level
 
+    _instructionText=[SKSpriteNode spriteNodeWithImageNamed:@"instructionText.png"];
+    _instructionText.position = CGPointMake(0,0);
+    _instructionText.alpha=0;
+    _instructionText.xScale=0.4;
+    _instructionText.yScale=0.4;
     
+    [self addChild: _instructionText];
     
+
     
 
     _rock = [SKSpriteNode spriteNodeWithImageNamed:@"0.png"];
-    _rock.position = CGPointMake(-100,0);
-    _rock.size =CGSizeMake(70, 70);
+    _rock.position = CGPointMake(-150,-80);
+    _rock.size =CGSizeMake(100, 100);
     _rock.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_rock.size.width/2];
     _rock.physicsBody.dynamic = NO;
     [self addChild: _rock];
     
     _radGravity =[SKFieldNode radialGravityField];
-    _radGravity.strength = 1;
+    _radGravity.strength = 3;
     _radGravity.falloff =1;
     [_rock addChild:_radGravity];
     
-    _radGravity.enabled=false;
+    _radGravity.enabled=true;
     
 
     
 
-    _titleLabel = [SKLabelNode labelNodeWithFontNamed:@"arial"];
-    _titleLabel.text = [NSString stringWithFormat:@"aggravated \n and \n gravitated"];
     
-    _titleLabel.fontSize = 40;
-    _titleLabel.fontColor = [SKColor whiteColor];
-    _titleLabel.position = CGPointMake(-100, 90);
+    _play =[SKSpriteNode spriteNodeWithImageNamed:@"play.png"];
+    _play.position=CGPointMake(200, 150);
+    _play.xScale=0.3;
+    _play.yScale=0.3;
+    _play.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(294/3,118/3)];
+    _play.physicsBody.dynamic = NO;
     
-    [self addChild:_titleLabel];
+    [self addChild:_play];
     
-    _playLabel = [SKLabelNode labelNodeWithFontNamed:@"arial"];
-    _playLabel.text = [NSString stringWithFormat:@"Play"];
-    _playLabel.fontSize = 20;
-    _playLabel.fontColor = [SKColor whiteColor];
-    _playLabel.position = CGPointMake(200, 150);
+    _instructions =[SKSpriteNode spriteNodeWithImageNamed:@"instructions.png"];
+    _instructions.position=CGPointMake(200, 0);
+    _instructions.xScale=0.3;
+    _instructions.yScale=0.3;
+    _instructions.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(859/3,118/3)];
+    _instructions.physicsBody.dynamic = NO;
     
-    [self addChild:_playLabel];
+    [self addChild:_instructions];
     
-    _instructionsLabel = [SKLabelNode labelNodeWithFontNamed:@"arial"];
-    _instructionsLabel.text = [NSString stringWithFormat:@"Instructions"];
-    _instructionsLabel.fontSize = 20;
-    _instructionsLabel.fontColor = [SKColor whiteColor];
-    _instructionsLabel.position = CGPointMake(200, 0);
+    _exit =[SKSpriteNode spriteNodeWithImageNamed:@"exit.png"];
+    _exit.position=CGPointMake(200, -150);
+    _exit.xScale=0.3;
+    _exit.yScale=0.3;
+    _exit.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(237/3,117/3)];
+    _exit.physicsBody.dynamic = NO;
     
-    [self addChild:_instructionsLabel];
+    [self addChild:_exit];
     
-    _exitLabel = [SKLabelNode labelNodeWithFontNamed:@"arial"];
-    _exitLabel.text = [NSString stringWithFormat:@"Exit"];
-    _exitLabel.fontSize = 20;
-    _exitLabel.fontColor = [SKColor whiteColor];
-    _exitLabel.position = CGPointMake(200, -150);
     
-    [self addChild:_exitLabel];
+    
+    
+    _aggravated =[SKSpriteNode spriteNodeWithImageNamed:@"a.png"];
+    _aggravated.position=CGPointMake(-150, 120);
+    _aggravated.xScale=0.5;
+    _aggravated.yScale=0.5;
+    _aggravated.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(767/3,131/3)];
+    _aggravated.physicsBody.dynamic = NO;
+    
+    [self addChild:_aggravated];
+    
+    _plus =[SKSpriteNode spriteNodeWithImageNamed:@"+.png"];
+    _plus.position=CGPointMake(-150, 80);
+    _plus.xScale=0.5;
+    _plus.yScale=0.5;
+    _plus.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:78/3];
+    _plus.physicsBody.dynamic = NO;
+    
+    [self addChild:_plus];
+    
+    _gravitated =[SKSpriteNode spriteNodeWithImageNamed:@"g.png"];
+    _gravitated.position=CGPointMake(-150, 40);
+    _gravitated.xScale=0.5;
+    _gravitated.yScale=0.5;
+    _gravitated.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(694/3,120/3)];
+    _gravitated.physicsBody.dynamic = NO;
+    
+    [self addChild:_gravitated];
     
     
     
@@ -118,9 +154,38 @@
 }
 
 - (void)touchDownAtPoint:(CGPoint)pos {
-    if (pos.x>=0){
-        [self nextLevel];
+    if (67<=pos.x && pos.x<=343){
+        if (130<=pos.y && pos.y<=180){ //play
+            _gravitated.physicsBody.dynamic = YES;
+            _plus.physicsBody.dynamic = YES;
+            _aggravated.physicsBody.dynamic = YES;
+            _exit.physicsBody.dynamic = YES;
+            _instructions.physicsBody.dynamic = YES;
+            _play.physicsBody.dynamic = YES;
+            
+            double delayInSeconds = 4.0; //The following 3 lines that create a delay in time were copied from this online source: https://goo.gl/WvrAoW
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [self nextLevel];
+            });
+          }
+        if (-20<=pos.y && pos.y<=20){ //instructions
+            _aggravated.alpha=0;
+            _plus.alpha=0;
+            _gravitated.alpha=0;
+            _play.alpha=0;
+            _exit.alpha=0;
+            _rock.alpha=0;
+            
+            _instructionText.alpha=1;
+            _instructions.position=CGPointMake(0, 180);
+            
+        }
     }
+    
+            
+        
+    
 
 }
 
@@ -145,10 +210,7 @@
 {
     if(_trigger==0){
         //[self runAction: self.buttonPressAnimation];
-        
-        _delay=_now;
-        
-        _level++;
+
         SKTransition *reveal = [SKTransition doorwayWithDuration:3];
         SKScene *levelScene = [[LevelScene alloc] initWithSize: self.scene.size];
         levelScene.anchorPoint=CGPointMake(0.5, 0.5);

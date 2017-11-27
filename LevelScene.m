@@ -63,14 +63,14 @@
 }
 
 -(void)coinContact{ //method to identify if an arrow has collided with the coin (could be improved: some collisions not detected if hit with end of arrow)
-    if ([self distanceCheck:_arrowFire.position :_coin.position :(_coin.size.width)+40]==true){
+    if ([self distanceCheck:_arrowFire.position :_coin.position :(_coin.size.width)+10]==true){
         
         _coin.physicsBody.dynamic = YES;
         [_coin runAction:[SKAction fadeOutWithDuration:2.0]];
         [_coin runAction:[SKAction scaleTo:2.0 duration:2.0]];
         
         
-        double delayInSeconds = 4.0; //The following 3 lines that create a delay in time were copied from this online source:
+        double delayInSeconds = 4.0; //The following 3 lines that create a delay in time were copied from this online source: https://goo.gl/WvrAoW 
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [self nextLevel];
@@ -86,17 +86,18 @@
 
 -(int)gravityFind{ //method to identify what gravity state the arrow is in
     
-    float r=_gravityField.size.width/2;
+    float r1=_gravityField.size.width/2;
+    float r2=_gravityField2.size.width/2;
     
-    if ( [self distanceCheck:_arrowFire.position :_gravityField.position :r]==true &&
-        [self distanceCheck:_arrowFire.position :_gravityField2.position :r]==true){
+    if ( [self distanceCheck:_arrowFire.position :_gravityField.position :r1]==true &&
+        [self distanceCheck:_arrowFire.position :_gravityField2.position :r2]==true){
         return 0;
     }
-    else if ([self distanceCheck:_arrowFire.position :_gravityField.position :r]==true){//identifies if the distance between arrow is less than radius
+    else if ([self distanceCheck:_arrowFire.position :_gravityField.position :r1]==true){//identifies if the distance between arrow is less than radius
         return 1;
         
     }
-    else if ([self distanceCheck:_arrowFire.position :_gravityField2.position :r]==true){
+    else if ([self distanceCheck:_arrowFire.position :_gravityField2.position :r2]==true){
         return 2;
     }
     
@@ -116,12 +117,30 @@
     _ellipseA=tempModel.ellipseA;
     _ellipseB=tempModel.ellipseB;
     
+    _ellipseConst=1.3*(powf(powf(tempModel.ellipseB.y-tempModel.ellipseA.y, 2)+powf(tempModel.ellipseB.x-tempModel.ellipseA.x, 2), 0.5));
+    
+    _ellipse=[SKSpriteNode spriteNodeWithImageNamed:@"greencircle.png"];
+    _ellipse.position = CGPointMake((tempModel.ellipseA.x+tempModel.ellipseB.x)/2,(tempModel.ellipseA.y+tempModel.ellipseB.y)/2);
+    _ellipse.size=CGSizeMake(_ellipseConst*1.1, _ellipseConst*0.65);
+    float angel = atanf((tempModel.ellipseB.y-tempModel.ellipseA.y)/(tempModel.ellipseB.x-tempModel.ellipseA.x));
+    //if (Ax-Rx<=0){
+    //    _angel = atanf((Ay-Ry)/(Ax-Rx))+M_PI;
+    _ellipse.zRotation=angel;
+    _ellipse.alpha=0.7;
+    [self addChild: _ellipse];
+    
     
     
     _gravityField = [SKSpriteNode spriteNodeWithImageNamed:@"circle.png"];
     _gravityField.position = tempModel.rock1Pos;
     _gravityField.size =CGSizeMake(tempModel.gravSize, tempModel.gravSize);
+    //_gravityField.alpha=0.7;
     [self addChild: _gravityField];
+    
+    
+
+    
+    
     
     _rock = [SKSpriteNode spriteNodeWithImageNamed:@"0.png"];
     //_rock.position = CGPointMake(100,100);
@@ -137,12 +156,12 @@
     
     _radGravity.enabled=false;
     
+    _gravityField2.size=CGSizeMake(1, 1);
     
     
     
     
-    
-    if (tempModel.rockAmount>=2){
+    if (tempModel.rockAmount==2){
         _gravityField2 =[_gravityField copy];
         
         _gravityField2.position =tempModel.rock2Pos;
@@ -208,16 +227,7 @@
     
     
     
-    _ellipseConst=1.3*(powf(powf(tempModel.ellipseB.y-tempModel.ellipseA.y, 2)+powf(tempModel.ellipseB.x-tempModel.ellipseA.x, 2), 0.5));
     
-    _ellipse=[SKSpriteNode spriteNodeWithImageNamed:@"greencircle.png"];
-    _ellipse.position = CGPointMake((tempModel.ellipseA.x+tempModel.ellipseB.x)/2,(tempModel.ellipseA.y+tempModel.ellipseB.y)/2);
-    _ellipse.size=CGSizeMake(_ellipseConst*1.1, _ellipseConst*0.65);
-    float angel = atanf((tempModel.ellipseB.y-tempModel.ellipseA.y)/(tempModel.ellipseB.x-tempModel.ellipseA.x));
-    //if (Ax-Rx<=0){
-    //    _angel = atanf((Ay-Ry)/(Ax-Rx))+M_PI;
-    _ellipse.zRotation=angel;
-    [self addChild: _ellipse];
     
     
     
@@ -298,7 +308,7 @@
     
     
     
-    if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r){
+    if ([self distanceCheck:pos:_dial.position :r]==true){
         _angel = atanf((Ay-Ry)/(Ax-Rx));
         if (Ax-Rx<=0){
             _angel = atanf((Ay-Ry)/(Ax-Rx))+M_PI;
@@ -318,6 +328,7 @@
     float r=(_LaunchButton.size.width/2);
     float strength = timeInterval*-150;
     
+    
     if ([self distanceCheck:pos:_LaunchButton.position :r]==true && _lives>0){
         if (strength>=750){
             strength=750;
@@ -336,6 +347,8 @@
 }
 
 - (void)touchDownAtPoint:(CGPoint)pos {
+    NSLog(@"x:%f",pos.x);
+    NSLog(@"y:%f",pos.y);
     
     float r=(_LaunchButton.size.width/2);
     
