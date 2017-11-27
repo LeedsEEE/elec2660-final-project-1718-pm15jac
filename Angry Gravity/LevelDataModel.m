@@ -27,8 +27,19 @@
         levelTwo.gravSize=200;
         levelTwo.rock1Pos=CGPointMake(100, 100);
         levelTwo.rock2Pos=CGPointMake(100, -50);
-        levelTwo.coinPos=CGPointMake(220, 120);
+        levelTwo.coinPos=CGPointMake(220, -120);
         [self.LevelData addObject:levelTwo];
+        
+        model*levelThree=[[model alloc]init];
+        levelThree.rockAmount =2;
+        levelThree.gravSize=200;
+        levelThree.rock1Pos=CGPointMake(150, 120);
+        levelThree.rock2Pos=CGPointMake(200, -70);
+        levelThree.coinPos=CGPointMake(300, -60);
+        
+        levelThree.ellipseA=CGPointMake(180, 10);
+        levelThree.ellipseA=CGPointMake(220, 30);
+        [self.LevelData addObject:levelThree];
         
 
 

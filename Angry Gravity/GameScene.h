@@ -16,9 +16,14 @@
 @property NSUInteger gravitySituation;
 @property float angel;
 @property NSDate* start;
+@property NSTimeInterval delay;
+@property NSTimeInterval now;
 @property int lives;
 @property int level;
 @property BOOL trigger;
+@property float ellipseConst;
+@property CGPoint ellipseA;
+@property CGPoint ellipseB;
 
 @property (strong, nonatomic) LevelDataModel *data;
 

@@ -17,6 +17,8 @@
 @property CGPoint rock3Pos;
 @property CGFloat gravSize;
 @property CGPoint coinPos;
+@property CGPoint ellipseA;
+@property CGPoint ellipseB;
 //add viscuss stuff here
 
 

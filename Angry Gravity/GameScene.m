@@ -31,6 +31,7 @@
     SKSpriteNode *_powerBar;
     SKSpriteNode *_cursor;
     SKLabelNode *_LivesLabel;
+    SKSpriteNode *_ellipse;
 
 }
 
@@ -39,7 +40,7 @@
     _trigger=0;
     
     
-    [self initLevelOne]; //initialize and configure the first level
+    [self initLevel]; //initialize and configure the first level
     
     
 }
@@ -47,25 +48,37 @@
 - (void)sceneDidLoad: (SKScene*) LevelTwo{
     // Setup your scene here
     
-    [self initLevelOne]; //initialize and configure the first level
+    [self initLevel]; //initialize and configure the first level
     
     
 }
 
--(bool)coinContact{ //method to identify if an arrow has collided with the coin (could be improved: some collisions not detected if hit with end of arrow)
-    float Ax=_arrowFire.position.x;
-    float Ay=_arrowFire.position.y;
-    float Rx=_coin.position.x;
-    float Ry=_coin.position.y;
-    float r=(_coin.size.width)+40; //usually 5
-    if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r){ //identifies if the distance between arrow and coin is very small
-        return 1;
-        
+
+-(BOOL)distanceCheck:(CGPoint)bodyA: (CGPoint)bodyB: (float)radius{
+    if (powf(powf(bodyA.y-bodyB.y, 2)+powf(bodyA.x-bodyB.x, 2), 0.5)<=radius){
+        return true;
     }
     else{
-        return 0; //is not touching
+        return false;
     }
+}
 
+-(void)coinContact{ //method to identify if an arrow has collided with the coin (could be improved: some collisions not detected if hit with end of arrow)
+    if ([self distanceCheck:_arrowFire.position :_coin.position :(_coin.size.width)+40]==true){
+
+        _coin.physicsBody.dynamic = YES;
+        [_coin runAction:[SKAction fadeOutWithDuration:2.0]];
+        [_coin runAction:[SKAction scaleTo:2.0 duration:2.0]];
+        
+        
+        double delayInSeconds = 4.0; //The following 3 lines that create a delay in time were copied from this online source:
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self nextLevel];
+        });
+        
+        
+    }
     
 }
 
@@ -73,40 +86,38 @@
 
 
 -(int)gravityFind{ //method to identify what gravity state the arrow is in
-    float Ax=_arrowFire.position.x;
-    float Ay=_arrowFire.position.y;
-    
-    float Rx=_gravityField.position.x;
-    float Ry=_gravityField.position.y;
     
     float r=_gravityField.size.width/2;
     
-    
-    float Gx=_gravityField2.position.x;
-    float Gy=_gravityField2.position.y;
-
-    if ( powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r && powf(powf(Ay-Gy, 2)+powf(Ax-Gx, 2), 0.5)<=r ){
+    if ( [self distanceCheck:_arrowFire.position :_gravityField.position :r]==true &&
+        [self distanceCheck:_arrowFire.position :_gravityField2.position :r]==true){
         return 0;
     }
-    else if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r){//identifies if the distance between arrow is less than radius
+    else if ([self distanceCheck:_arrowFire.position :_gravityField.position :r]==true){//identifies if the distance between arrow is less than radius
         return 1;
-    
+        
     }
-    else if (powf(powf(Ay-Gy, 2)+powf(Ax-Gx, 2), 0.5)<=r){
+    else if ([self distanceCheck:_arrowFire.position :_gravityField2.position :r]==true){
         return 2;
     }
-
+    
     else{
         return 0;
     }
     
-    
 }
 
--(void)initLevelOne{ //initialize the first level
+
+
+-(void)initLevel{ //initialize the first level
     self.data = [[LevelDataModel alloc] init];
     _lives =5;
     model *tempModel = [self.data.LevelData objectAtIndex:_level];
+    
+    _ellipseA=tempModel.ellipseA;
+    _ellipseB=tempModel.ellipseB;
+    
+    
     
     _gravityField = [SKSpriteNode spriteNodeWithImageNamed:@"circle.png"];
     _gravityField.position = tempModel.rock1Pos;
@@ -128,6 +139,8 @@
     _radGravity.enabled=false;
     
     
+    
+    
 
     
     if (tempModel.rockAmount>=2){
@@ -142,7 +155,7 @@
         //[self addChild: rock2];
         [_gravityField2 addChild: _radGravity2];
         [self addChild: _gravityField2];
-        [_rock2 runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:-M_PI/14 duration:1]]];
+        
 
         
         if (tempModel.rockAmount==3){
@@ -159,8 +172,10 @@
 
         }
     }
+    _rock.physicsBody.angularVelocity=1;
+    //[_rock2 runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:-M_PI/14 duration:1]]];
+    //[_rock runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:M_PI/14 duration:1]]];
     
-    [_rock runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:M_PI/14 duration:1]]];
     
     _arrowCannon = [SKSpriteNode spriteNodeWithImageNamed:@"arrowCanon.png"];
     _arrowCannon.position = CGPointMake(-300,150);
@@ -194,7 +209,16 @@
     
 
     
-
+    _ellipseConst=1.3*(powf(powf(tempModel.ellipseB.y-tempModel.ellipseA.y, 2)+powf(tempModel.ellipseB.x-tempModel.ellipseA.x, 2), 0.5));
+    
+    _ellipse=[SKSpriteNode spriteNodeWithImageNamed:@"greencircle.png"];
+    _ellipse.position = CGPointMake((tempModel.ellipseA.x+tempModel.ellipseB.x)/2,(tempModel.ellipseA.y+tempModel.ellipseB.y)/2);
+    _ellipse.size=CGSizeMake(_ellipseConst*1.1, _ellipseConst*0.65);
+    float angel = atanf((tempModel.ellipseB.y-tempModel.ellipseA.y)/(tempModel.ellipseB.x-tempModel.ellipseA.x));
+    //if (Ax-Rx<=0){
+    //    _angel = atanf((Ay-Ry)/(Ax-Rx))+M_PI;
+    _ellipse.zRotation=angel;
+    [self addChild: _ellipse];
     
     
 
@@ -244,7 +268,21 @@
     
 }
 
-
+-(void)ellipseFind{
+    float A = powf(powf(_arrowFire.position.y-_ellipseA.y, 2)+powf(_arrowFire.position.x-_ellipseA.x, 2), 0.5);
+    float B =powf(powf(_arrowFire.position.y-_ellipseB.y, 2)+powf(_arrowFire.position.x-_ellipseB.x, 2), 0.5);
+    if ( A+B<=_ellipseConst){
+        
+        //_arrowFire.physicsBody.dynamic=false;
+        _arrowFire.physicsBody.linearDamping=2;
+        _arrowFire.physicsBody.angularDamping=2;
+        }
+    else{
+        //_arrowFire.physicsBody.dynamic=true;
+        _arrowFire.physicsBody.linearDamping=0;
+        _arrowFire.physicsBody.angularDamping=0;
+    }
+}
 
 
 
@@ -275,15 +313,14 @@
 }
 
 - (void)touchUpAtPoint:(CGPoint)pos {
+    
     NSTimeInterval timeInterval = [_start timeIntervalSinceNow]; //identify how long since the user started pushing the button.
-    float Ax=pos.x;
-    float Ay=pos.y;
-    float Rx=_LaunchButton.position.x;
-    float Ry=_LaunchButton.position.y;
+
     float r=(_LaunchButton.size.width/2);
     float strength = timeInterval*-150;
-    if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r && _lives>0){
-        if (strength<-750){
+    
+    if ([self distanceCheck:pos:_LaunchButton.position :r]==true && _lives>0){
+        if (strength>=750){
             strength=750;
         }
         _arrowFire =[_arrow copy];
@@ -300,13 +337,10 @@
 }
 
 - (void)touchDownAtPoint:(CGPoint)pos {
-    float Ax=pos.x;
-    float Ay=pos.y;
-    float Rx=_LaunchButton.position.x;
-    float Ry=_LaunchButton.position.y;
+
     float r=(_LaunchButton.size.width/2);
 
-    if (powf(powf(Ay-Ry, 2)+powf(Ax-Rx, 2), 0.5)<=r && _lives>0){
+    if ([self distanceCheck:pos :_LaunchButton.position :r]==true && _lives>0){
         _start = [NSDate date]; //log current time to evaluate how long the user holds the button
         [_cursor runAction:[SKAction moveToX:350 duration:5.0]];
 
@@ -334,14 +368,17 @@
 {
     if(_trigger==0){
         //[self runAction: self.buttonPressAnimation];
-        _level=1;
+        
+        _delay=_now;
+        
+        _level++;
         SKTransition *reveal = [SKTransition doorwayWithDuration:3];
         SKScene *levelTwo = [[GameScene alloc] initWithSize: self.scene.size];
         levelTwo.anchorPoint=CGPointMake(0.5, 0.5);
         levelTwo.scaleMode =SKSceneScaleModeAspectFill;
         self.removeAllChildren;
         //[self.scene.view presentScene: levelTwo transition: reveal];
-        [self initLevelOne];
+        [self initLevel];
         _trigger=1;
 
     }
@@ -357,7 +394,7 @@
 }
 
 -(void)update:(CFTimeInterval)currentTime {
-
+    [self ellipseFind];
     if ([self gravityFind] ==1){
         _radGravity.enabled=true;
         _radGravity2.enabled=false;
@@ -375,32 +412,17 @@
     
     }
     
-    if ([self coinContact] ==YES){
-        _level=1;
-        _coin.physicsBody.dynamic = YES;
-        [_coin runAction:[SKAction fadeOutWithDuration:2.0]];
-        [_coin runAction:[SKAction scaleTo:2.0 duration:2.0]];
+    [self coinContact];
 
-
-        double delayInSeconds = 4.0; //The following 3 lines that create a delay in time were copied from this online source:
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [self nextLevel];
-        });
-        
-        
+    _now=currentTime;
+    if (_now>=_delay+3){//ensures nextLevel only calls once per level up and not ever frame
+        _trigger=0;
     }
-    else if ([self coinContact] ==NO){
-        //_coin.physicsBody.dynamic = NO;
-        
-        
-    }
-    
 
     _arrow.physicsBody.mass=1;
     _arrow.physicsBody.friction=1;
     _arrow.physicsBody.restitution=0.5;
-    _arrow.physicsBody.linearDamping=0;
+    
     _arrow.physicsBody.angularDamping=0;
     _arrow.position=CGPointMake(400, 400);
     

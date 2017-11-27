@@ -13,6 +13,7 @@
 		FF171E381FC445AC0077E77F /* arrowCanon.png in Resources */ = {isa = PBXBuildFile; fileRef = FF171E371FC445AC0077E77F /* arrowCanon.png */; };
 		FF171E3A1FC4477E0077E77F /* red-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = FF171E391FC4477E0077E77F /* red-circle.png */; };
 		FF3B267B1FC3432900A2302D /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = FF3B267A1FC3432900A2302D /* coin.png */; };
+		FF7592311FCC23D8002D940D /* greencircle.png in Resources */ = {isa = PBXBuildFile; fileRef = FF7592301FCC23D8002D940D /* greencircle.png */; };
 		FFBE7BA31FBB28210070C70B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE7BA21FBB28210070C70B /* main.m */; };
 		FFBE7BA61FBB28210070C70B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE7BA51FBB28210070C70B /* AppDelegate.m */; };
 		FFBE7BA81FBB28210070C70B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = FFBE7BA71FBB28210070C70B /* GameScene.sks */; };
@@ -60,6 +61,7 @@
 		FF171E371FC445AC0077E77F /* arrowCanon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrowCanon.png; path = ../../../../Downloads/arrowCanon.png; sourceTree = "<group>"; };
 		FF171E391FC4477E0077E77F /* red-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "red-circle.png"; path = "../../../../Downloads/red-circle.png"; sourceTree = "<group>"; };
 		FF3B267A1FC3432900A2302D /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coin.png; path = ../../../coin.png; sourceTree = "<group>"; };
+		FF7592301FCC23D8002D940D /* greencircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greencircle.png; sourceTree = "<group>"; };
 		FFBE7B9E1FBB28210070C70B /* Angry Gravity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Angry Gravity.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFBE7BA21FBB28210070C70B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FFBE7BA41FBB28210070C70B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -142,8 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				FFBE7BA41FBB28210070C70B /* AppDelegate.h */,
-				FFE66D2C1FC49E300045E005 /* powerGrad.png */,
 				FFBE7BA51FBB28210070C70B /* AppDelegate.m */,
+				FFE66D2C1FC49E300045E005 /* powerGrad.png */,
 				FFBE7BA71FBB28210070C70B /* GameScene.sks */,
 				FFBE7BDE1FBB2C4B0070C70B /* 0.png */,
 				FFBE7BA91FBB28210070C70B /* Actions.sks */,
@@ -155,6 +157,7 @@
 				FF1228D91FC8539600E4752A /* model.m */,
 				FF1228D51FC8535B00E4752A /* LevelDataModel.h */,
 				FF1228D61FC8535B00E4752A /* LevelDataModel.m */,
+				FF7592301FCC23D8002D940D /* greencircle.png */,
 				FFE66D281FC497240045E005 /* cursor.png */,
 				FF171E391FC4477E0077E77F /* red-circle.png */,
 				FF171E371FC445AC0077E77F /* arrowCanon.png */,
@@ -319,6 +322,7 @@
 				FF171DF01FC434360077E77F /* dial.png in Resources */,
 				FFBE7BE11FBB3AD30070C70B /* Arrow.png in Resources */,
 				FF171E381FC445AC0077E77F /* arrowCanon.png in Resources */,
+				FF7592311FCC23D8002D940D /* greencircle.png in Resources */,
 				FFBE7BB31FBB28210070C70B /* Main.storyboard in Resources */,
 				FFBE7BE51FBB4C900070C70B /* circle.png in Resources */,
 				FFBE7BA81FBB28210070C70B /* GameScene.sks in Resources */,
