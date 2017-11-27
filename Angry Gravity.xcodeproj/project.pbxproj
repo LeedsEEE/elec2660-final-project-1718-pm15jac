@@ -30,7 +30,7 @@
 		FFBE7BE11FBB3AD30070C70B /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBE7BE01FBB3AD30070C70B /* Arrow.png */; };
 		FFBE7BE31FBB3D630070C70B /* arrowReal.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBE7BE21FBB3D630070C70B /* arrowReal.png */; };
 		FFBE7BE51FBB4C900070C70B /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBE7BE41FBB4C900070C70B /* circle.png */; };
-		FFDC56841FC7572C004CAB02 /* LevelTwoScene.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDC56831FC7572C004CAB02 /* LevelTwoScene.m */; };
+		FFDC56841FC7572C004CAB02 /* LevelScene.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDC56831FC7572C004CAB02 /* LevelScene.m */; };
 		FFE66D291FC497240045E005 /* cursor.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE66D281FC497240045E005 /* cursor.png */; };
 		FFE66D2D1FC49E300045E005 /* powerGrad.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE66D2C1FC49E300045E005 /* powerGrad.png */; };
 /* End PBXBuildFile section */
@@ -87,8 +87,8 @@
 		FFBE7BE01FBB3AD30070C70B /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Arrow.png; path = ../../../../Downloads/Arrow.png; sourceTree = "<group>"; };
 		FFBE7BE21FBB3D630070C70B /* arrowReal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrowReal.png; path = ../../../../Downloads/arrowReal.png; sourceTree = "<group>"; };
 		FFBE7BE41FBB4C900070C70B /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = circle.png; path = ../../../../Downloads/circle.png; sourceTree = "<group>"; };
-		FFDC56821FC7572C004CAB02 /* LevelTwoScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelTwoScene.h; path = ../LevelTwoScene.h; sourceTree = "<group>"; };
-		FFDC56831FC7572C004CAB02 /* LevelTwoScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelTwoScene.m; path = ../LevelTwoScene.m; sourceTree = "<group>"; };
+		FFDC56821FC7572C004CAB02 /* LevelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelScene.h; path = ../LevelScene.h; sourceTree = "<group>"; };
+		FFDC56831FC7572C004CAB02 /* LevelScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelScene.m; path = ../LevelScene.m; sourceTree = "<group>"; };
 		FFE66D281FC497240045E005 /* cursor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cursor.png; path = ../../../../Downloads/cursor.png; sourceTree = "<group>"; };
 		FFE66D2C1FC49E300045E005 /* powerGrad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = powerGrad.png; path = ../../../../Downloads/powerGrad.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,8 +151,8 @@
 				FFBE7BA91FBB28210070C70B /* Actions.sks */,
 				FFBE7BAB1FBB28210070C70B /* GameScene.h */,
 				FFBE7BAC1FBB28210070C70B /* GameScene.m */,
-				FFDC56821FC7572C004CAB02 /* LevelTwoScene.h */,
-				FFDC56831FC7572C004CAB02 /* LevelTwoScene.m */,
+				FFDC56821FC7572C004CAB02 /* LevelScene.h */,
+				FFDC56831FC7572C004CAB02 /* LevelScene.m */,
 				FF1228D81FC8539600E4752A /* model.h */,
 				FF1228D91FC8539600E4752A /* model.m */,
 				FF1228D51FC8535B00E4752A /* LevelDataModel.h */,
@@ -357,7 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFDC56841FC7572C004CAB02 /* LevelTwoScene.m in Sources */,
+				FFDC56841FC7572C004CAB02 /* LevelScene.m in Sources */,
 				FFBE7BB01FBB28210070C70B /* GameViewController.m in Sources */,
 				FF1228DA1FC8539600E4752A /* model.m in Sources */,
 				FFBE7BA61FBB28210070C70B /* AppDelegate.m in Sources */,
