@@ -30,12 +30,19 @@
     SKSpriteNode *_powerBar;
     SKSpriteNode *_cursor;
     SKLabelNode *_LivesLabel;
+    SKLabelNode *_LevelLabel;
     SKSpriteNode *_ellipse;
     
     SKSpriteNode *_gameOver;
     SKSpriteNode *_space; //sprite taken from: https://goo.gl/YTuyHV
+    
     SKSpriteNode *_antiGravityField;
     SKFieldNode *_antiRadGravity;
+    
+    SKSpriteNode *_vortexField; //sprite taken from: https://goo.gl/HTcd3n
+    SKFieldNode *_radVortex;
+    
+    
     
 }
 
@@ -65,10 +72,12 @@
 -(void)initLevel{ //initialize the first level
     self.data = [[LevelDataModel alloc] init];
     _lives =5;
-    model *tempModel = [self.data.LevelData objectAtIndex:4];
+    model *tempModel = [self.data.LevelData objectAtIndex:_level];
     
     _finalLevel= self.data.LevelData.count-1; //count how many levels are in the dataModel
     //level 1 is actually level 0 so subtract by 1
+    
+    _rockAmount=tempModel.rockAmount;
     
     
     _space=[SKSpriteNode spriteNodeWithImageNamed:@"space.jpg"];
@@ -121,7 +130,7 @@
     
     
     
-    if (tempModel.rockAmount==2){
+    if (tempModel.rockAmount>=2){
         _gravityField2 =[_gravityField copy];
         
         _gravityField2.position =tempModel.rock2Pos;
@@ -141,8 +150,9 @@
             _gravityField3 =[_gravityField copy];
             
             _gravityField3.position =tempModel.rock3Pos;
+            _gravityField3.alpha=0.7;
             
-            _rock3=[_rock copy];
+            //_rock3=[_rock copy];
             _radGravity3=[_radGravity copy];
             
             [self addChild: _gravityField3];
@@ -176,17 +186,36 @@
     _antiGravityField.size =CGSizeMake(150, 150);
     _antiGravityField.alpha=0.7;
     
+    if (_antiGravityField.position.x!=0){
+        [self addChild: _antiGravityField];
+    }
     
-    [self addChild: _antiGravityField];
+    
     
     _antiRadGravity =[SKFieldNode electricField];
     _antiRadGravity.strength = 1;
     _antiRadGravity.falloff =1;
+    
     [_antiGravityField addChild:_antiRadGravity];
     
-    _radGravity.enabled=false;
+    _vortexField = [SKSpriteNode spriteNodeWithImageNamed:@"vortex.png"];
+    _vortexField.position = tempModel.vortex;
+    _vortexField.size =CGSizeMake(150, 150);
+    _vortexField.alpha=0.7;
+    
+    if (_vortexField.position.x!=0){
+        [self addChild: _vortexField];
+    }
     
     
+    
+    _radVortex =[SKFieldNode vortexField];
+    _radVortex.strength = -0.005;
+    _radVortex.falloff =0.3;
+    
+    [_vortexField addChild:_radVortex];
+
+    [_vortexField runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:-M_PI/14 duration:1]]];
     
     
     _dial = [SKSpriteNode spriteNodeWithImageNamed:@"dialGrey.png"];
@@ -232,6 +261,14 @@
     _LivesLabel.position = CGPointMake(300, 180);
     
     [self addChild:_LivesLabel];
+    
+    _LevelLabel = [SKLabelNode labelNodeWithFontNamed:@"arial"];
+    _LevelLabel.text = [NSString stringWithFormat:@"Level: %i /%i",_level+1,_finalLevel+1];
+    _LevelLabel.fontSize = 20;
+    _LevelLabel.fontColor = [SKColor whiteColor];
+    _LevelLabel.position = CGPointMake(-300, 180);
+    
+    [self addChild:_LevelLabel];
     
     
     _gameOver = [SKSpriteNode spriteNodeWithImageNamed:@"gameOver.png"];
@@ -290,20 +327,65 @@
     else{
         _antiRadGravity.enabled=false;
     }
-    
-    
-    if ( [self distanceCheck:_arrowFire.position :_gravityField.position :r1]==true &&
-        [self distanceCheck:_arrowFire.position :_gravityField2.position :r2]==true){
-        return 0;
-    }
-    else if ([self distanceCheck:_arrowFire.position :_gravityField.position :r1]==true){//identifies if the distance between arrow is less than radius
-        return 1;
+    /*
+    if (_rockAmount<=2){
+        if ( [self distanceCheck:_arrowFire.position :_gravityField.position :r1]==true &&
+            [self distanceCheck:_arrowFire.position :_gravityField2.position :r2]==true){
+            return 0;
+        }
+        else if ([self distanceCheck:_arrowFire.position :_gravityField.position :r1]==true){//identifies if the distance between arrow is less than radius
+            return 1;
+            
+        }
+        else if ([self distanceCheck:_arrowFire.position :_gravityField2.position :r2]==true){
+            return 2;
+        }
         
+        else{
+            return 0;
+        }
+    }*/
+    if (_rockAmount==3){
+        if ( [self distanceCheck:_arrowFire.position :_gravityField.position :r1]==true &&
+            [self distanceCheck:_arrowFire.position :_gravityField2.position :r2]==false &&
+            [self distanceCheck:_arrowFire.position :_gravityField3.position :r3]==false){
+            return 1;
+        }
+        else if ( [self distanceCheck:_arrowFire.position :_gravityField.position :r1]==false &&
+                 [self distanceCheck:_arrowFire.position :_gravityField2.position :r2]==true &&
+                 [self distanceCheck:_arrowFire.position :_gravityField3.position :r3]==false){
+            return 2;
+            
+        }
+        else if ( [self distanceCheck:_arrowFire.position :_gravityField.position :r1]==false &&
+                 [self distanceCheck:_arrowFire.position :_gravityField2.position :r2]==false &&
+                 [self distanceCheck:_arrowFire.position :_gravityField3.position :r3]==true){
+            return 3;
+        }
+        
+        else{
+            return 0;
+        }
+        
+   }
+    if(_rockAmount==2 ||1){
+        if ( [self distanceCheck:_arrowFire.position :_gravityField.position :r1]==true &&
+            [self distanceCheck:_arrowFire.position :_gravityField2.position :r2]==true){
+            return 0;
+        }
+        else if ([self distanceCheck:_arrowFire.position :_gravityField.position :r1]==true){//identifies if the distance between arrow is less than radius
+            return 1;
+            
+        }
+        else if ([self distanceCheck:_arrowFire.position :_gravityField2.position :r2]==true){
+            return 2;
+        }
+        
+        else{
+            return 0;
+        }
+
     }
-    else if ([self distanceCheck:_arrowFire.position :_gravityField2.position :r2]==true){
-        return 2;
-    }
-    
     else{
         return 0;
     }
@@ -456,6 +538,9 @@
                         
                         [self.scene.view presentScene: menuScene transition: reveal];
                     }
+                    else{
+                        _trigger2=0;
+                    }
                     
                     
                     
@@ -497,16 +582,25 @@
     if ([self gravityFind] ==1){
         _radGravity.enabled=true;
         _radGravity2.enabled=false;
+        _radGravity3.enabled=false;
         
     }
     if ([self gravityFind] ==2){
         _radGravity.enabled=false;
         _radGravity2.enabled=true;
+        _radGravity3.enabled=false;
+        
+    }
+    if ([self gravityFind] ==3){
+        _radGravity.enabled=false;
+        _radGravity2.enabled=false;
+        _radGravity3.enabled=true;
         
     }
     else if ([self gravityFind] ==0){
         _radGravity.enabled=false;
         _radGravity2.enabled=false;
+        _radGravity3.enabled=false;
         
         
     }

@@ -29,6 +29,7 @@
 @property CGPoint ellipseA;
 @property CGPoint ellipseB;
 @property int finalLevel;
+@property int rockAmount;
 
 @property (strong, nonatomic) LevelDataModel *data;
 

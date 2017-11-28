@@ -19,7 +19,7 @@
         levelOne.rockAmount =1;
         levelOne.gravSize=300;
         levelOne.rock1Pos=CGPointMake(100, 100);
-        levelOne.coinPos=CGPointMake(150, 100);
+        levelOne.coinPos=CGPointMake(180, 100);
         [self.LevelData addObject:levelOne];
         
         model*levelTwo=[[model alloc]init];
@@ -63,6 +63,43 @@
         levelFive.antiGravity=CGPointMake(80, 0);
 
         [self.LevelData addObject:levelFive];
+        
+        model*levelSix=[[model alloc]init];
+        levelSix.rockAmount =3;
+        levelSix.gravSize=300;
+        levelSix.rock1Pos=CGPointMake(50, 40);
+        levelSix.rock2Pos=CGPointMake(182, -150);
+        levelSix.rock3Pos=CGPointMake(285, 40);
+        levelSix.coinPos=CGPointMake(170, -20);
+        
+        
+        [self.LevelData addObject:levelSix];
+        
+        model*levelSeven=[[model alloc]init];
+        levelSeven.rockAmount =3;
+        levelSeven.gravSize=300;
+        levelSeven.rock1Pos=CGPointMake(50, 40);
+        levelSeven.rock2Pos=CGPointMake(182, -150);
+        levelSeven.rock3Pos=CGPointMake(285, 40);
+        levelSeven.coinPos=CGPointMake(170, -20);
+        
+        levelSeven.antiGravity=CGPointMake(170, -20);
+        
+        
+        [self.LevelData addObject:levelSeven];
+        
+        model*levelEight=[[model alloc]init];
+        levelEight.rockAmount =3;
+        levelEight.gravSize=300;
+        levelEight.rock1Pos=CGPointMake(50, 40);
+        levelEight.rock2Pos=CGPointMake(182, -150);
+        levelEight.rock3Pos=CGPointMake(285, 40);
+        levelEight.coinPos=CGPointMake(170, -20);
+        
+        levelEight.vortex=CGPointMake(170, -20);
+        
+        
+        [self.LevelData addObject:levelEight];
         
 
 
