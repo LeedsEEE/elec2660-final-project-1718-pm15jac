@@ -41,6 +41,7 @@
 		FFE6F9221FCC88F6009DAE2B /* cursor.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE6F91A1FCC88F6009DAE2B /* cursor.png */; };
 		FFE6F9241FCC88F6009DAE2B /* powerGrad.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE6F91C1FCC88F6009DAE2B /* powerGrad.png */; };
 		FFE6F9251FCC88F6009DAE2B /* red-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE6F91D1FCC88F6009DAE2B /* red-circle.png */; };
+		FFF4B5441FCDCD6100296220 /* redCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF4B5431FCDCD6100296220 /* redCircle.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		FFE6F91A1FCC88F6009DAE2B /* cursor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cursor.png; sourceTree = "<group>"; };
 		FFE6F91C1FCC88F6009DAE2B /* powerGrad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = powerGrad.png; sourceTree = "<group>"; };
 		FFE6F91D1FCC88F6009DAE2B /* red-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-circle.png"; sourceTree = "<group>"; };
+		FFF4B5431FCDCD6100296220 /* redCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redCircle.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,27 +171,10 @@
 				FF1228D91FC8539600E4752A /* model.m */,
 				FF1228D51FC8535B00E4752A /* LevelDataModel.h */,
 				FF1228D61FC8535B00E4752A /* LevelDataModel.m */,
+				FFF4B5431FCDCD6100296220 /* redCircle.png */,
 				FFBE7BAE1FBB28210070C70B /* GameViewController.h */,
 				FFBE7BAF1FBB28210070C70B /* GameViewController.m */,
-				FF6D954E1FCCA27900AE5DFE /* instructionText.png */,
-				FFE6F9161FCC88F6009DAE2B /* 0.png */,
-				FFB2B6041FCD7EBD00F28FBD /* arrowRealGrey.png */,
-				FFB2B6051FCD7EBD00F28FBD /* dialGrey.png */,
-				FFE6F9171FCC88F6009DAE2B /* arrowCanon.png */,
-				FFE6F9191FCC88F6009DAE2B /* circle.png */,
-				FFE6F91A1FCC88F6009DAE2B /* cursor.png */,
-				FFE6F91C1FCC88F6009DAE2B /* powerGrad.png */,
-				FFE6F91D1FCC88F6009DAE2B /* red-circle.png */,
-				FFE6F9141FCC7B48009DAE2B /* play.png */,
-				FFB2B6021FCD7C9500F28FBD /* space.jpg */,
-				FFB2B6001FCD6FEA00F28FBD /* gameOver.png */,
-				FFE6F90A1FCC780A009DAE2B /* +.png */,
-				FFE6F90B1FCC780A009DAE2B /* a.png */,
-				FFE6F90C1FCC780A009DAE2B /* exit.png */,
-				FFE6F90D1FCC780A009DAE2B /* g.png */,
-				FFE6F90E1FCC780A009DAE2B /* instructions.png */,
-				FF7592301FCC23D8002D940D /* greencircle.png */,
-				FF3B267A1FC3432900A2302D /* coin.png */,
+				FFF4B5421FCDB5BA00296220 /* assets */,
 				FFBE7BB11FBB28210070C70B /* Main.storyboard */,
 				FFBE7BA71FBB28210070C70B /* GameScene.sks */,
 				FFBE7BA91FBB28210070C70B /* Actions.sks */,
@@ -233,6 +218,32 @@
 				FFBE7BDC1FBB28630070C70B /* SpriteKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FFF4B5421FCDB5BA00296220 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				FF6D954E1FCCA27900AE5DFE /* instructionText.png */,
+				FFE6F9161FCC88F6009DAE2B /* 0.png */,
+				FFB2B6041FCD7EBD00F28FBD /* arrowRealGrey.png */,
+				FFB2B6051FCD7EBD00F28FBD /* dialGrey.png */,
+				FFE6F9171FCC88F6009DAE2B /* arrowCanon.png */,
+				FFE6F9191FCC88F6009DAE2B /* circle.png */,
+				FFE6F91A1FCC88F6009DAE2B /* cursor.png */,
+				FFE6F91C1FCC88F6009DAE2B /* powerGrad.png */,
+				FFE6F91D1FCC88F6009DAE2B /* red-circle.png */,
+				FFE6F9141FCC7B48009DAE2B /* play.png */,
+				FFB2B6021FCD7C9500F28FBD /* space.jpg */,
+				FFB2B6001FCD6FEA00F28FBD /* gameOver.png */,
+				FFE6F90A1FCC780A009DAE2B /* +.png */,
+				FFE6F90B1FCC780A009DAE2B /* a.png */,
+				FFE6F90C1FCC780A009DAE2B /* exit.png */,
+				FFE6F90D1FCC780A009DAE2B /* g.png */,
+				FFE6F90E1FCC780A009DAE2B /* instructions.png */,
+				FF7592301FCC23D8002D940D /* greencircle.png */,
+				FF3B267A1FC3432900A2302D /* coin.png */,
+			);
+			name = assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,6 +355,7 @@
 				FFE6F91F1FCC88F6009DAE2B /* arrowCanon.png in Resources */,
 				FF7592311FCC23D8002D940D /* greencircle.png in Resources */,
 				FFBE7BB31FBB28210070C70B /* Main.storyboard in Resources */,
+				FFF4B5441FCDCD6100296220 /* redCircle.png in Resources */,
 				FFE6F9151FCC7B48009DAE2B /* play.png in Resources */,
 				FFB2B6061FCD7EBD00F28FBD /* arrowRealGrey.png in Resources */,
 				FFB2B6031FCD7C9500F28FBD /* space.jpg in Resources */,

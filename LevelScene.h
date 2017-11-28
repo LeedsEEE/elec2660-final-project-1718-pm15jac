@@ -12,6 +12,7 @@
 //#import <SKPhysicsBody/SKPhysicsBody.h>
 
 @interface LevelScene : SKScene
+<SKPhysicsContactDelegate>
 @property(nonatomic) NSInteger preferredFramesPerSecond;
 @property NSUInteger gravitySituation;
 @property float angel;

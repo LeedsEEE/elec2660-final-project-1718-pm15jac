@@ -53,6 +53,17 @@
         levelFour.ellipseB=CGPointMake(84, 117);
         [self.LevelData addObject:levelFour];
         
+        model*levelFive=[[model alloc]init];
+        levelFive.rockAmount =2;
+        levelFive.gravSize=300;
+        levelFive.rock1Pos=CGPointMake(100, 150);
+        levelFive.rock2Pos=CGPointMake(100, -150);
+        levelFive.coinPos=CGPointMake(150, 0);
+        
+        levelFive.antiGravity=CGPointMake(80, 0);
+
+        [self.LevelData addObject:levelFive];
+        
 
 
        

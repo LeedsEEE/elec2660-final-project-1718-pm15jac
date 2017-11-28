@@ -25,7 +25,7 @@
 
 }
 
-#pragma - Level Generate and Control
+#pragma mark- Level Generate and Control
 
 - (void)didMoveToView:(SKView *)view {
     // Setup your scene here
@@ -147,7 +147,7 @@
 }
 
 
-#pragma - touch controls
+#pragma mark - touch controls
 
 - (void)touchDownAtPoint:(CGPoint)pos {
     if (67<=pos.x && pos.x<=343){

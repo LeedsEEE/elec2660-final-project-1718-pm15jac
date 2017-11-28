@@ -34,20 +34,23 @@
     
     SKSpriteNode *_gameOver;
     SKSpriteNode *_space; //sprite taken from: https://goo.gl/YTuyHV
+    SKSpriteNode *_antiGravityField;
+    SKFieldNode *_antiRadGravity;
     
 }
+
+#pragma mark - level generation
 
 - (void)didMoveToView:(SKView *)view {
     // Setup your scene here
     _trigger1=0;
     _trigger2=0;
     
-    
     [self initLevel]; //initialize and configure the first level
     
-    
-}
 
+}
+/*
 - (void)sceneDidLoad: (SKScene*) LevelTwo{
     // Setup your scene here
     
@@ -56,67 +59,13 @@
     
 }
 
-
--(BOOL)distanceCheck:(CGPoint)bodyA: (CGPoint)bodyB: (float)radius{
-    if (powf(powf(bodyA.y-bodyB.y, 2)+powf(bodyA.x-bodyB.x, 2), 0.5)<=radius){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
-
--(void)coinContact{ //method to identify if an arrow has collided with the coin (could be improved: some collisions not detected if hit with end of arrow)
-    if ([self distanceCheck:_arrowFire.position :_coin.position :(_coin.size.width)+10]==true){
-        
-        _coin.physicsBody.dynamic = YES;
-        [_coin runAction:[SKAction fadeOutWithDuration:2.0]];
-        [_coin runAction:[SKAction scaleTo:2.0 duration:2.0]];
-        
-        
-        double delayInSeconds = 4.0; //The following 3 lines that create a delay in time were copied from this online source: https://goo.gl/WvrAoW 
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [self nextLevel];
-        });
-        
-        
-    }
-    
-}
-
-
-
-
--(int)gravityFind{ //method to identify what gravity state the arrow is in
-    
-    float r1=_gravityField.size.width/2;
-    float r2=_gravityField2.size.width/2;
-    
-    if ( [self distanceCheck:_arrowFire.position :_gravityField.position :r1]==true &&
-        [self distanceCheck:_arrowFire.position :_gravityField2.position :r2]==true){
-        return 0;
-    }
-    else if ([self distanceCheck:_arrowFire.position :_gravityField.position :r1]==true){//identifies if the distance between arrow is less than radius
-        return 1;
-        
-    }
-    else if ([self distanceCheck:_arrowFire.position :_gravityField2.position :r2]==true){
-        return 2;
-    }
-    
-    else{
-        return 0;
-    }
-    
-}
-
+*/
 
 
 -(void)initLevel{ //initialize the first level
     self.data = [[LevelDataModel alloc] init];
     _lives =5;
-    model *tempModel = [self.data.LevelData objectAtIndex:_level];
+    model *tempModel = [self.data.LevelData objectAtIndex:4];
     
     _finalLevel= self.data.LevelData.count-1; //count how many levels are in the dataModel
     //level 1 is actually level 0 so subtract by 1
@@ -137,8 +86,7 @@
     _ellipse.position = CGPointMake((tempModel.ellipseA.x+tempModel.ellipseB.x)/2,(tempModel.ellipseA.y+tempModel.ellipseB.y)/2);
     _ellipse.size=CGSizeMake(_ellipseConst*1.1, _ellipseConst*0.65);
     float angel = atanf((tempModel.ellipseB.y-tempModel.ellipseA.y)/(tempModel.ellipseB.x-tempModel.ellipseA.x));
-    //if (Ax-Rx<=0){
-    //    _angel = atanf((Ay-Ry)/(Ax-Rx))+M_PI;
+
     _ellipse.zRotation=angel;
     _ellipse.alpha=0.7;
     [self addChild: _ellipse];
@@ -148,18 +96,14 @@
     _gravityField = [SKSpriteNode spriteNodeWithImageNamed:@"circle.png"];
     _gravityField.position = tempModel.rock1Pos;
     _gravityField.size =CGSizeMake(tempModel.gravSize, tempModel.gravSize);
-    //_gravityField.alpha=0.7;
+
     _gravityField.alpha=0.7;
     
     [self addChild: _gravityField];
     
     
-
-    
-    
-    
     _rock = [SKSpriteNode spriteNodeWithImageNamed:@"0.png"];
-    //_rock.position = CGPointMake(100,100);
+
     _rock.size =CGSizeMake(70, 70);
     _rock.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_rock.size.width/2];
     _rock.physicsBody.dynamic = NO;
@@ -219,8 +163,6 @@
     
     [self addChild: _arrowCannon];
     
-    
-    
     _coin = [SKSpriteNode spriteNodeWithImageNamed:@"coin.png"];
     _coin.position = tempModel.coinPos;
     _coin.size =CGSizeMake(20, 20);
@@ -228,6 +170,23 @@
     _coin.physicsBody.dynamic = NO;
     
     [self addChild: _coin];
+    
+    _antiGravityField = [SKSpriteNode spriteNodeWithImageNamed:@"redCircle.png"];
+    _antiGravityField.position = tempModel.antiGravity;
+    _antiGravityField.size =CGSizeMake(150, 150);
+    _antiGravityField.alpha=0.7;
+    
+    
+    [self addChild: _antiGravityField];
+    
+    _antiRadGravity =[SKFieldNode electricField];
+    _antiRadGravity.strength = 1;
+    _antiRadGravity.falloff =1;
+    [_antiGravityField addChild:_antiRadGravity];
+    
+    _radGravity.enabled=false;
+    
+    
     
     
     _dial = [SKSpriteNode spriteNodeWithImageNamed:@"dialGrey.png"];
@@ -243,30 +202,14 @@
     [self addChild: _LaunchButton];
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     _arrow = [SKSpriteNode spriteNodeWithImageNamed:@"arrowRealGrey.png"];
-    //_arrow.position = CGPointMake(400,400);
     _arrow.size =CGSizeMake(50, 10);
     _arrow.zRotation =M_PI;
-    //_arrow.physicsBody.velocity = self.physicsBody.velocity;
-    
-    //arrow.physicsBody.collisionBitMask =0b0011;
     _arrow.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize: CGSizeMake(_arrow.size.width,
                                                                             _arrow.size.height)];
-    
-    //_arrow.physicsBody.velocity = CGVectorMake(100, 0); //uncomment this code to test
     _arrow.physicsBody.dynamic = YES;
-    //[arrow.physicsBody applyImpulse: CGVectorMake(100, 0)];
-    
+    _arrow.physicsBody.charge=0.05;
+
     [self addChild: _arrow];
     
     _powerBar = [SKSpriteNode spriteNodeWithImageNamed:@"powerGrad.png"];
@@ -293,13 +236,85 @@
     
     _gameOver = [SKSpriteNode spriteNodeWithImageNamed:@"gameOver.png"];
     _gameOver.position = CGPointMake(0, 0);
-    //_gameOver.size =CGSizeMake(tempModel.gravSize, tempModel.gravSize);
     _gameOver.alpha=0;
     [self addChild: _gameOver];
     
     
+}
+
+#pragma mark - position verification
+
+-(BOOL)distanceCheck:(CGPoint)bodyA: (CGPoint)bodyB: (float)radius{
+    if (powf(powf(bodyA.y-bodyB.y, 2)+powf(bodyA.x-bodyB.x, 2), 0.5)<=radius){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+-(void)coinContact{ //method to identify if an arrow has collided with the coin (could be improved: some collisions not detected if hit with end of arrow)
+    if ([self distanceCheck:_arrowFire.position :_coin.position :(_coin.size.width)+15]==true){
+        
+        _coin.physicsBody.dynamic = YES;
+        [_coin runAction:[SKAction fadeOutWithDuration:2.0]];
+        [_coin runAction:[SKAction scaleTo:2.0 duration:2.0]];
+        
+        
+        double delayInSeconds = 4.0; //The following 3 lines that create a delay in time were copied from this online source: https://goo.gl/WvrAoW
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self nextLevel];
+        });
+        
+        
+    }
+    
     
 }
+
+
+
+
+-(int)gravityFind{ //method to identify what gravity state the arrow is in
+    
+    float r1=_gravityField.size.width/2;
+    float r2=_gravityField2.size.width/2;
+    float r3=_gravityField3.size.width/2;
+    float r4=_antiGravityField.size.width/2;
+    
+    
+    if ([self distanceCheck:_arrowFire.position :_antiGravityField.position :r4]==true){
+        _antiRadGravity.enabled=true;
+    }
+    else{
+        _antiRadGravity.enabled=false;
+    }
+    
+    
+    if ( [self distanceCheck:_arrowFire.position :_gravityField.position :r1]==true &&
+        [self distanceCheck:_arrowFire.position :_gravityField2.position :r2]==true){
+        return 0;
+    }
+    else if ([self distanceCheck:_arrowFire.position :_gravityField.position :r1]==true){//identifies if the distance between arrow is less than radius
+        return 1;
+        
+    }
+    else if ([self distanceCheck:_arrowFire.position :_gravityField2.position :r2]==true){
+        return 2;
+    }
+    
+    else{
+        return 0;
+    }
+    
+    
+   
+
+    
+}
+
+
 
 -(void)ellipseFind{
     float A = powf(powf(_arrowFire.position.y-_ellipseA.y, 2)+powf(_arrowFire.position.x-_ellipseA.x, 2), 0.5);
@@ -317,8 +332,7 @@
     }
 }
 
-
-
+#pragma mark - touch controls
 
 - (float)touchMovedToPoint:(CGPoint)pos {
     float Ax=pos.x;
@@ -383,6 +397,8 @@
     }
 }
 
+#pragma mark - touch events
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     for (UITouch *t in touches) {[self touchDownAtPoint:[t locationInNode:self]];}
@@ -397,7 +413,7 @@
     for (UITouch *t in touches) {[self touchUpAtPoint:[t locationInNode:self]];}
 }
 
-
+#pragma mark - scene control 
 
 
 - (void)nextLevel
@@ -432,13 +448,15 @@
                 _trigger2=1;
                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
                 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                    if(_trigger1==0){
+                        SKTransition *reveal = [SKTransition doorwayWithDuration:3];
+                        SKScene *menuScene = [[GameScene alloc] initWithSize: self.scene.size];
+                        menuScene.anchorPoint=CGPointMake(0.5, 0.5);
+                        menuScene.scaleMode =SKSceneScaleModeAspectFill;
+                        
+                        [self.scene.view presentScene: menuScene transition: reveal];
+                    }
                     
-                    SKTransition *reveal = [SKTransition doorwayWithDuration:3];
-                    SKScene *menuScene = [[GameScene alloc] initWithSize: self.scene.size];
-                    menuScene.anchorPoint=CGPointMake(0.5, 0.5);
-                    menuScene.scaleMode =SKSceneScaleModeAspectFill;
-                    
-                    [self.scene.view presentScene: menuScene transition: reveal];
                     
                     
                         
@@ -492,9 +510,10 @@
         
         
     }
-    
+
     [self coinContact];
     [self gameOver];
+
     
     _now=currentTime;
     if (_now>=_delay+4){//ensures nextLevel only calls once per level up and not ever frame
@@ -504,6 +523,7 @@
     _arrow.physicsBody.mass=1;
     _arrow.physicsBody.friction=1;
     _arrow.physicsBody.restitution=0.5;
+    _arrow.physicsBody.charge=0.05;
     
     _arrow.physicsBody.angularDamping=0;
     _arrow.position=CGPointMake(400, 400);
@@ -516,7 +536,7 @@
     }
     
     
-    
+
     
     
     

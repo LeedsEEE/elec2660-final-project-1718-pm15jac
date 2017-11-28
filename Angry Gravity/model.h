@@ -19,6 +19,9 @@
 @property CGPoint coinPos;
 @property CGPoint ellipseA;
 @property CGPoint ellipseB;
+@property CGPoint antiGravity;
+@property CGPoint vortex;
+
 //add viscuss stuff here
 
 
