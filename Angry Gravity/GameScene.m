@@ -14,42 +14,39 @@
     SKFieldNode *_radGravity;
     
     
-    SKSpriteNode *_aggravated;
+    SKSpriteNode *_aggravated; //text assets of this kind were generated on: https://cooltext.com
     SKSpriteNode *_plus;
     SKSpriteNode *_gravitated;
     SKSpriteNode *_play;
     SKSpriteNode *_instructions;
     SKSpriteNode *_exit;
     SKSpriteNode *_instructionText;
+    SKSpriteNode *_space;
 
 }
+
+#pragma - Level Generate and Control
 
 - (void)didMoveToView:(SKView *)view {
     // Setup your scene here
     _trigger=0;
     
     
-    [self initLevel]; //initialize and configure the first level
-    
-    
-}
-
-- (void)sceneDidLoad: (SKScene*) LevelTwo{
-    // Setup your scene here
-    
-    [self initLevel]; //initialize and configure the first level
+    [self initMenu]; //initialize and configure all nodes within the menu
     
     
 }
 
 
 
-
-
-
-
-
--(void)initLevel{ //initialize the first level
+-(void)initMenu{ //initialize the first level
+    
+    self.physicsWorld.gravity=CGVectorMake(0, 0);
+    
+    _space=[SKSpriteNode spriteNodeWithImageNamed:@"space.jpg"];
+    _space.position = CGPointMake(0,0);
+    _space.size=CGSizeMake(750, 450);
+    [self addChild: _space];
 
     _instructionText=[SKSpriteNode spriteNodeWithImageNamed:@"instructionText.png"];
     _instructionText.position = CGPointMake(0,0);
@@ -58,8 +55,6 @@
     _instructionText.yScale=0.4;
     
     [self addChild: _instructionText];
-    
-
     
 
     _rock = [SKSpriteNode spriteNodeWithImageNamed:@"0.png"];
@@ -77,9 +72,6 @@
     _radGravity.enabled=true;
     
 
-    
-
-    
     _play =[SKSpriteNode spriteNodeWithImageNamed:@"play.png"];
     _play.position=CGPointMake(200, 150);
     _play.xScale=0.3;
@@ -106,8 +98,6 @@
     _exit.physicsBody.dynamic = NO;
     
     [self addChild:_exit];
-    
-    
     
     
     _aggravated =[SKSpriteNode spriteNodeWithImageNamed:@"a.png"];
@@ -137,21 +127,27 @@
     
     [self addChild:_gravitated];
     
-    
+}
+
+- (void)nextLevel
+{
+    if(_trigger==0){
+        
+        SKTransition *reveal = [SKTransition doorwayWithDuration:3];
+        SKScene *levelScene = [[LevelScene alloc] initWithSize: self.scene.size];
+        levelScene.anchorPoint=CGPointMake(0.5, 0.5);
+        levelScene.scaleMode =SKSceneScaleModeAspectFill;
+        
+        [self.scene.view presentScene: levelScene transition: reveal];
+        
+        _trigger=1;
+        
+    }
     
 }
 
 
-
-- (void)touchMovedToPoint:(CGPoint)pos {
-
-
-}
-
-- (void)touchUpAtPoint:(CGPoint)pos {
-    
-
-}
+#pragma - touch controls
 
 - (void)touchDownAtPoint:(CGPoint)pos {
     if (67<=pos.x && pos.x<=343){
@@ -174,71 +170,38 @@
             _plus.alpha=0;
             _gravitated.alpha=0;
             _play.alpha=0;
-            _exit.alpha=0;
             _rock.alpha=0;
             
+            _exit.position=CGPointMake(-300, 180);
             _instructionText.alpha=1;
             _instructions.position=CGPointMake(0, 180);
             
         }
+        if (-170<=pos.y && pos.y<=-130){ //exit
+            exit(0);
+            
+        }
     }
     
-            
+    if (-360<=pos.x && pos.x<=-240 && 160<=pos.y && pos.y<=200){
+        _aggravated.alpha=1;
+        _plus.alpha=1;
+        _gravitated.alpha=1;
+        _play.alpha=1;
+        _rock.alpha=1;
         
+        _exit.position=CGPointMake(200, -150);
+        _instructionText.alpha=0;
+        _instructions.position=CGPointMake(200, 0);
+    }
     
-
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     for (UITouch *t in touches) {[self touchDownAtPoint:[t locationInNode:self]];}
 }
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-    for (UITouch *t in touches) {[self touchMovedToPoint:[t locationInNode:self]];}
-}
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    for (UITouch *t in touches) {[self touchUpAtPoint:[t locationInNode:self]];}
-}
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-    for (UITouch *t in touches) {[self touchUpAtPoint:[t locationInNode:self]];}
-}
 
 
 
-
-- (void)nextLevel
-{
-    if(_trigger==0){
-        //[self runAction: self.buttonPressAnimation];
-
-        SKTransition *reveal = [SKTransition doorwayWithDuration:3];
-        SKScene *levelScene = [[LevelScene alloc] initWithSize: self.scene.size];
-        levelScene.anchorPoint=CGPointMake(0.5, 0.5);
-        levelScene.scaleMode =SKSceneScaleModeAspectFill;
-
-        [self.scene.view presentScene: levelScene transition: reveal];
-        //[self initLevel];
-        _trigger=1;
-
-    }
-    
-  
-
-
-
-}
-
--(void)update:(CFTimeInterval)currentTime {
-
-
-    
-
-    
-    
-    
-
-
-
-
-}
 @end

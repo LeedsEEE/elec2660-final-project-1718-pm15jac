@@ -8,6 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "LevelDataModel.h"
+#import  "GameScene.h"
 //#import <SKPhysicsBody/SKPhysicsBody.h>
 
 @interface LevelScene : SKScene
@@ -19,10 +20,14 @@
 @property NSTimeInterval now;
 @property int lives;
 @property int level;
-@property BOOL trigger;
+@property BOOL trigger1;
+@property BOOL trigger2;
+
+
 @property float ellipseConst;
 @property CGPoint ellipseA;
 @property CGPoint ellipseB;
+@property int finalLevel;
 
 @property (strong, nonatomic) LevelDataModel *data;
 

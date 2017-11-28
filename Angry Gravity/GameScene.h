@@ -17,4 +17,5 @@
 @property (strong, nonatomic) LevelDataModel *data;
 @property BOOL trigger;
 
+
 @end

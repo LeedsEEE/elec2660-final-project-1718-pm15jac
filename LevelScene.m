@@ -32,11 +32,15 @@
     SKLabelNode *_LivesLabel;
     SKSpriteNode *_ellipse;
     
+    SKSpriteNode *_gameOver;
+    SKSpriteNode *_space; //sprite taken from: https://goo.gl/YTuyHV
+    
 }
 
 - (void)didMoveToView:(SKView *)view {
     // Setup your scene here
-    _trigger=0;
+    _trigger1=0;
+    _trigger2=0;
     
     
     [self initLevel]; //initialize and configure the first level
@@ -114,6 +118,16 @@
     _lives =5;
     model *tempModel = [self.data.LevelData objectAtIndex:_level];
     
+    _finalLevel= self.data.LevelData.count-1; //count how many levels are in the dataModel
+    //level 1 is actually level 0 so subtract by 1
+    
+    
+    _space=[SKSpriteNode spriteNodeWithImageNamed:@"space.jpg"];
+    _space.position = CGPointMake(0,0);
+    _space.size=CGSizeMake(750, 450);
+    [self addChild: _space];
+    
+    
     _ellipseA=tempModel.ellipseA;
     _ellipseB=tempModel.ellipseB;
     
@@ -135,6 +149,8 @@
     _gravityField.position = tempModel.rock1Pos;
     _gravityField.size =CGSizeMake(tempModel.gravSize, tempModel.gravSize);
     //_gravityField.alpha=0.7;
+    _gravityField.alpha=0.7;
+    
     [self addChild: _gravityField];
     
     
@@ -165,6 +181,7 @@
         _gravityField2 =[_gravityField copy];
         
         _gravityField2.position =tempModel.rock2Pos;
+        _gravityField2.alpha=0.7;
         
         //_rock2=[_rock copy];
         _radGravity2=[_radGravity copy];
@@ -213,7 +230,7 @@
     [self addChild: _coin];
     
     
-    _dial = [SKSpriteNode spriteNodeWithImageNamed:@"dial.png"];
+    _dial = [SKSpriteNode spriteNodeWithImageNamed:@"dialGrey.png"];
     _dial.position = CGPointMake(-250,-100);
     _dial.size =CGSizeMake(200, 200);
     
@@ -236,7 +253,7 @@
     
     
     
-    _arrow = [SKSpriteNode spriteNodeWithImageNamed:@"arrowReal.png"];
+    _arrow = [SKSpriteNode spriteNodeWithImageNamed:@"arrowRealGrey.png"];
     //_arrow.position = CGPointMake(400,400);
     _arrow.size =CGSizeMake(50, 10);
     _arrow.zRotation =M_PI;
@@ -272,6 +289,13 @@
     _LivesLabel.position = CGPointMake(300, 180);
     
     [self addChild:_LivesLabel];
+    
+    
+    _gameOver = [SKSpriteNode spriteNodeWithImageNamed:@"gameOver.png"];
+    _gameOver.position = CGPointMake(0, 0);
+    //_gameOver.size =CGSizeMake(tempModel.gravSize, tempModel.gravSize);
+    _gameOver.alpha=0;
+    [self addChild: _gameOver];
     
     
     
@@ -378,32 +402,77 @@
 
 - (void)nextLevel
 {
-    if(_trigger==0){
+    if(_trigger1==0){
         //[self runAction: self.buttonPressAnimation];
         
         _delay=_now;
+        if (_level<_finalLevel){ // to ensure that a level that doesn't exist is never attempted to load
+            _level++;
+        }
         
-        _level++;
-        //SKTransition *reveal = [SKTransition doorwayWithDuration:3];
-        //SKScene *levelTwo = [[GameScene alloc] initWithSize: self.scene.size];
-        //levelTwo.anchorPoint=CGPointMake(0.5, 0.5);
-        //levelTwo.scaleMode =SKSceneScaleModeAspectFill;
         self.removeAllChildren;
-        //[self.scene.view presentScene: levelTwo transition: reveal];
         [self initLevel];
-        _trigger=1;
+        _trigger1=1;
         
     }
     
-    /*
-     SKScene *levelTwoScene = [[LevelTwoScene alloc] initWithSize: self.scene.size];
-     levelTwoScene.scaleMode =SKSceneScaleModeAspectFill;
-     levelTwoScene.anchorPoint=CGPointMake(0.5, 0.5);
-     [self.scene.view presentScene: levelTwoScene transition: reveal];
-     */
-    
+
     
 }
+
+
+-(void)gameOver{
+    if(_lives==0){
+        
+        double delayInSeconds = 4.0; //The following 3 lines that create a delay in time were copied from this online source: https://goo.gl/WvrAoW
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            if (_trigger1==0 && _trigger2==0){ //added if statment to avoid the user winning on their last life and still reciving a game over and allow this code to only be run once per loss
+                _gameOver.alpha=1;
+                _trigger2=1;
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                    
+                    SKTransition *reveal = [SKTransition doorwayWithDuration:3];
+                    SKScene *menuScene = [[GameScene alloc] initWithSize: self.scene.size];
+                    menuScene.anchorPoint=CGPointMake(0.5, 0.5);
+                    menuScene.scaleMode =SKSceneScaleModeAspectFill;
+                    
+                    [self.scene.view presentScene: menuScene transition: reveal];
+                    
+                    
+                        
+                    
+                });
+
+                
+                
+                
+            }
+        });
+        
+        
+        /*
+        _coin.physicsBody.dynamic=true;
+        _dial.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_dial.size.width/2];
+        _dial.physicsBody.dynamic=true;
+        _arrowCannon.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_arrowCannon.size];
+        _arrowCannon.physicsBody.dynamic=true;
+        _LaunchButton.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_LaunchButton.size.width/2];
+        _LaunchButton.physicsBody.dynamic=true;
+        
+        _powerBar.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_powerBar.size];
+        _powerBar.physicsBody.dynamic=true;
+        _cursor.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_cursor.size];
+        _cursor.physicsBody.dynamic=true;
+        _LivesLabel.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(100, 20)];
+        _LivesLabel.physicsBody.dynamic=true;
+        
+        */
+        
+    }
+}
+
 
 -(void)update:(CFTimeInterval)currentTime {
     [self ellipseFind];
@@ -425,10 +494,11 @@
     }
     
     [self coinContact];
+    [self gameOver];
     
     _now=currentTime;
-    if (_now>=_delay+3){//ensures nextLevel only calls once per level up and not ever frame
-        _trigger=0;
+    if (_now>=_delay+4){//ensures nextLevel only calls once per level up and not ever frame
+        _trigger1=0;
     }
     
     _arrow.physicsBody.mass=1;
@@ -439,7 +509,6 @@
     _arrow.position=CGPointMake(400, 400);
     
     self.physicsWorld.gravity=CGVectorMake(0, 0);
-    
     
     
     if (_arrowFire.position.x<-360 || _arrowFire.position.x>360||_arrowFire.position.y<-230 ||_arrowFire.position.y>230){

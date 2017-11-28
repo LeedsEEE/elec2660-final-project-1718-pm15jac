@@ -12,6 +12,10 @@
 		FF3B267B1FC3432900A2302D /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = FF3B267A1FC3432900A2302D /* coin.png */; };
 		FF6D954F1FCCA27900AE5DFE /* instructionText.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6D954E1FCCA27900AE5DFE /* instructionText.png */; };
 		FF7592311FCC23D8002D940D /* greencircle.png in Resources */ = {isa = PBXBuildFile; fileRef = FF7592301FCC23D8002D940D /* greencircle.png */; };
+		FFB2B6011FCD6FEA00F28FBD /* gameOver.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB2B6001FCD6FEA00F28FBD /* gameOver.png */; };
+		FFB2B6031FCD7C9500F28FBD /* space.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FFB2B6021FCD7C9500F28FBD /* space.jpg */; };
+		FFB2B6061FCD7EBD00F28FBD /* arrowRealGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB2B6041FCD7EBD00F28FBD /* arrowRealGrey.png */; };
+		FFB2B6071FCD7EBD00F28FBD /* dialGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB2B6051FCD7EBD00F28FBD /* dialGrey.png */; };
 		FFBE7BA31FBB28210070C70B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE7BA21FBB28210070C70B /* main.m */; };
 		FFBE7BA61FBB28210070C70B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE7BA51FBB28210070C70B /* AppDelegate.m */; };
 		FFBE7BA81FBB28210070C70B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = FFBE7BA71FBB28210070C70B /* GameScene.sks */; };
@@ -33,10 +37,8 @@
 		FFE6F9151FCC7B48009DAE2B /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE6F9141FCC7B48009DAE2B /* play.png */; };
 		FFE6F91E1FCC88F6009DAE2B /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE6F9161FCC88F6009DAE2B /* 0.png */; };
 		FFE6F91F1FCC88F6009DAE2B /* arrowCanon.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE6F9171FCC88F6009DAE2B /* arrowCanon.png */; };
-		FFE6F9201FCC88F6009DAE2B /* arrowReal.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE6F9181FCC88F6009DAE2B /* arrowReal.png */; };
 		FFE6F9211FCC88F6009DAE2B /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE6F9191FCC88F6009DAE2B /* circle.png */; };
 		FFE6F9221FCC88F6009DAE2B /* cursor.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE6F91A1FCC88F6009DAE2B /* cursor.png */; };
-		FFE6F9231FCC88F6009DAE2B /* dial.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE6F91B1FCC88F6009DAE2B /* dial.png */; };
 		FFE6F9241FCC88F6009DAE2B /* powerGrad.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE6F91C1FCC88F6009DAE2B /* powerGrad.png */; };
 		FFE6F9251FCC88F6009DAE2B /* red-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE6F91D1FCC88F6009DAE2B /* red-circle.png */; };
 /* End PBXBuildFile section */
@@ -66,6 +68,10 @@
 		FF3B267A1FC3432900A2302D /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coin.png; path = ../../../coin.png; sourceTree = "<group>"; };
 		FF6D954E1FCCA27900AE5DFE /* instructionText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instructionText.png; sourceTree = "<group>"; };
 		FF7592301FCC23D8002D940D /* greencircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greencircle.png; sourceTree = "<group>"; };
+		FFB2B6001FCD6FEA00F28FBD /* gameOver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameOver.png; sourceTree = "<group>"; };
+		FFB2B6021FCD7C9500F28FBD /* space.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = space.jpg; sourceTree = "<group>"; };
+		FFB2B6041FCD7EBD00F28FBD /* arrowRealGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowRealGrey.png; sourceTree = "<group>"; };
+		FFB2B6051FCD7EBD00F28FBD /* dialGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dialGrey.png; sourceTree = "<group>"; };
 		FFBE7B9E1FBB28210070C70B /* Angry Gravity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Angry Gravity.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFBE7BA21FBB28210070C70B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FFBE7BA41FBB28210070C70B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -97,10 +103,8 @@
 		FFE6F9141FCC7B48009DAE2B /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		FFE6F9161FCC88F6009DAE2B /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.png; sourceTree = "<group>"; };
 		FFE6F9171FCC88F6009DAE2B /* arrowCanon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowCanon.png; sourceTree = "<group>"; };
-		FFE6F9181FCC88F6009DAE2B /* arrowReal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowReal.png; sourceTree = "<group>"; };
 		FFE6F9191FCC88F6009DAE2B /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		FFE6F91A1FCC88F6009DAE2B /* cursor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cursor.png; sourceTree = "<group>"; };
-		FFE6F91B1FCC88F6009DAE2B /* dial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dial.png; sourceTree = "<group>"; };
 		FFE6F91C1FCC88F6009DAE2B /* powerGrad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = powerGrad.png; sourceTree = "<group>"; };
 		FFE6F91D1FCC88F6009DAE2B /* red-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-circle.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,7 +163,6 @@
 				FFBE7BA51FBB28210070C70B /* AppDelegate.m */,
 				FFBE7BAB1FBB28210070C70B /* GameScene.h */,
 				FFBE7BAC1FBB28210070C70B /* GameScene.m */,
-				FF6D954E1FCCA27900AE5DFE /* instructionText.png */,
 				FFDC56821FC7572C004CAB02 /* LevelScene.h */,
 				FFDC56831FC7572C004CAB02 /* LevelScene.m */,
 				FF1228D81FC8539600E4752A /* model.h */,
@@ -168,15 +171,18 @@
 				FF1228D61FC8535B00E4752A /* LevelDataModel.m */,
 				FFBE7BAE1FBB28210070C70B /* GameViewController.h */,
 				FFBE7BAF1FBB28210070C70B /* GameViewController.m */,
+				FF6D954E1FCCA27900AE5DFE /* instructionText.png */,
 				FFE6F9161FCC88F6009DAE2B /* 0.png */,
+				FFB2B6041FCD7EBD00F28FBD /* arrowRealGrey.png */,
+				FFB2B6051FCD7EBD00F28FBD /* dialGrey.png */,
 				FFE6F9171FCC88F6009DAE2B /* arrowCanon.png */,
-				FFE6F9181FCC88F6009DAE2B /* arrowReal.png */,
 				FFE6F9191FCC88F6009DAE2B /* circle.png */,
 				FFE6F91A1FCC88F6009DAE2B /* cursor.png */,
-				FFE6F91B1FCC88F6009DAE2B /* dial.png */,
 				FFE6F91C1FCC88F6009DAE2B /* powerGrad.png */,
 				FFE6F91D1FCC88F6009DAE2B /* red-circle.png */,
 				FFE6F9141FCC7B48009DAE2B /* play.png */,
+				FFB2B6021FCD7C9500F28FBD /* space.jpg */,
+				FFB2B6001FCD6FEA00F28FBD /* gameOver.png */,
 				FFE6F90A1FCC780A009DAE2B /* +.png */,
 				FFE6F90B1FCC780A009DAE2B /* a.png */,
 				FFE6F90C1FCC780A009DAE2B /* exit.png */,
@@ -339,9 +345,13 @@
 				FF7592311FCC23D8002D940D /* greencircle.png in Resources */,
 				FFBE7BB31FBB28210070C70B /* Main.storyboard in Resources */,
 				FFE6F9151FCC7B48009DAE2B /* play.png in Resources */,
+				FFB2B6061FCD7EBD00F28FBD /* arrowRealGrey.png in Resources */,
+				FFB2B6031FCD7C9500F28FBD /* space.jpg in Resources */,
 				FFBE7BA81FBB28210070C70B /* GameScene.sks in Resources */,
 				FFE6F9101FCC780A009DAE2B /* a.png in Resources */,
 				FFBE7BB51FBB28210070C70B /* Assets.xcassets in Resources */,
+				FFB2B6011FCD6FEA00F28FBD /* gameOver.png in Resources */,
+				FFB2B6071FCD7EBD00F28FBD /* dialGrey.png in Resources */,
 				FFE6F9221FCC88F6009DAE2B /* cursor.png in Resources */,
 				FFE6F9121FCC780A009DAE2B /* g.png in Resources */,
 				FFE6F91E1FCC88F6009DAE2B /* 0.png in Resources */,
@@ -354,8 +364,6 @@
 				FFE6F9131FCC780A009DAE2B /* instructions.png in Resources */,
 				FFBE7BAA1FBB28210070C70B /* Actions.sks in Resources */,
 				FFE6F9211FCC88F6009DAE2B /* circle.png in Resources */,
-				FFE6F9231FCC88F6009DAE2B /* dial.png in Resources */,
-				FFE6F9201FCC88F6009DAE2B /* arrowReal.png in Resources */,
 				FFE6F9251FCC88F6009DAE2B /* red-circle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
