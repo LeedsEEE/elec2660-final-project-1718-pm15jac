@@ -14,3 +14,5 @@
 @property (strong, nonatomic) NSMutableArray *LevelData;
 
 @end
+
+//this class is the data model that handles all the information needed to make a level

@@ -15,7 +15,7 @@
 <SKPhysicsContactDelegate>
 @property(nonatomic) NSInteger preferredFramesPerSecond;
 @property NSUInteger gravitySituation;
-@property float angel;
+@property float angle;
 @property NSDate* start;
 @property NSTimeInterval delay;
 @property NSTimeInterval now;
