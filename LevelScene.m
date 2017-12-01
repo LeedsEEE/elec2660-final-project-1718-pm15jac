@@ -51,8 +51,8 @@
 #pragma mark - level generation
 
 - (void)didMoveToView:(SKView *)view { //method loads after the menu takes you to the game
-    
-    _trigger1=0;
+    _lives=19; //Player gets a set amount of lives to complete the game that do not refresh with each level
+    _trigger1=0; //set triggers
     _trigger2=0;
     
     [self initLevel]; //initialize and configure the first level
@@ -61,19 +61,19 @@
 }
 
 -(void)initLevel{ //initialize a level
-    
+   
     /*
      initLevel is by far the biggest and possibly most complicated method of the program. I’ve tried to simplify and organise it in a couple ways that ultimately failed and had to be abandoned. I tried to control the initialisation of a node as a very simple method that is called many times within initLevel but the process of handling sprite creation within their own method completely breaks them. I also tried to turn initLevel into its own class and breaking it up into methods. Handling sprites outside of the Scene class also seemed to break them so the result is a very large method called at the start of every level.
      
      */
     
-    
+    _lives++; //every level grants the player one extra life
     self.data = [[LevelDataModel alloc] init]; //Initialization of the dataModel which contains information describing the creation of a level
-    _lives =5; //reset lives at the start of every level. I toyed with the idea of not resetting lives but thought it might make the game too hard
+    //_lives =5; //reset lives at the start of every level. I toyed with the idea of not resetting lives but thought it might make the game too hard
     model *tempModel = [self.data.LevelData objectAtIndex:_level]; //which level to take data for depends on the _level int which is ++ at the end of each level
     
     _finalLevel= self.data.LevelData.count-1; //count how many levels are in the dataModel
-    //level 1 is actually level 0 so subtract by 1
+    //level 1 is actually level 0 etc so subtract by 1
     
     _rockAmount=tempModel.rockAmount; //this variable is used outside of this method so it needed to be global
     
@@ -84,7 +84,8 @@
     [self addChild: _space];
     
     
-    _ellipseA=tempModel.ellipseA;     _ellipseB=tempModel.ellipseB;
+    _ellipseA=tempModel.ellipseA;
+    _ellipseB=tempModel.ellipseB;
     
     _ellipseConst=1.3*(powf(powf(tempModel.ellipseB.y-tempModel.ellipseA.y, 2)+powf(tempModel.ellipseB.x-tempModel.ellipseA.x, 2), 0.5)); //ellipse contstant is 1.3 times as great as the distance between the two points
     
@@ -120,12 +121,7 @@
     _radGravity.falloff =1;
     [_gravityField addChild:_radGravity]; //radGravity shares the same position as rock and gravityField
     
-    _radGravity.enabled=false;
-    
     _gravityField2.size=CGSizeMake(1, 1); //this size is to fix a bug where the second gravity field should not be in a level but still affects gravity situations
-    
-    
-    
     
     if (tempModel.rockAmount>=2){
         _gravityField2 =[_gravityField copy]; //create a copy of gravity field and its children only if the level has at least 2 rocks
@@ -141,7 +137,6 @@
         [_gravityField2 addChild: _radGravity2];
         [self addChild: _gravityField2];
         
-        [_rock2 runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:-M_PI/14 duration:1]]]; //make rock2 spin forever
         
         if (tempModel.rockAmount==3){//create a third copy of gravity field and its children only if the level has 3 rocks
             _gravityField3 =[_gravityField copy];
@@ -155,12 +150,13 @@
             [self addChild: _gravityField3];
             //[self addChild: rock3];
             //[self addChild: radGravity3];
-            [_rock3 runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:M_PI/14 duration:1]]];
+            
         }
     }
     
-    
-    [_rock runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:M_PI/14 duration:1]]];
+    [_gravityField runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:M_PI/14 duration:1]]];
+    [_gravityField2 runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:-M_PI/14 duration:1]]]; //make the rocks spin forever
+    [_gravityField3 runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:M_PI/14 duration:1]]];
     
     
     _arrowCannon = [SKSpriteNode spriteNodeWithImageNamed:@"arrowCanon.png"];
@@ -188,7 +184,6 @@
     }
     
     
-    
     _antiRadGravity =[SKFieldNode electricField]; //_antiGravity acts as an electric field to allow it to push arrows away
     _antiRadGravity.strength = 1;
     _antiRadGravity.falloff =1;
@@ -200,10 +195,9 @@
     _vortexField.size =CGSizeMake(150, 150);
     _vortexField.alpha=0.7;
     
-    if (_vortexField.position.x!=0){
+    if (_vortexField.position.x!=0){ //only create vortex when its position has been specified
         [self addChild: _vortexField];
     }
-    
     
     
     _radVortex =[SKFieldNode vortexField]; //radVortex acts as a vortextField which gives physics objects a perpendicular force
@@ -231,10 +225,9 @@
     _arrow = [SKSpriteNode spriteNodeWithImageNamed:@"arrowRealGrey.png"];
     _arrow.size =CGSizeMake(50, 10);
     _arrow.zRotation =M_PI;
-    _arrow.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize: CGSizeMake(_arrow.size.width,
-                                                                            _arrow.size.height)];
-    _arrow.physicsBody.dynamic = YES;
-    _arrow.physicsBody.charge=0.05;
+    _arrow.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize: CGSizeMake(_arrow.size.width,_arrow.size.height)]; //give arrow a rectangle physical shape
+    _arrow.physicsBody.dynamic = YES; //arrow can be affected by gravity and forces
+    _arrow.physicsBody.charge=0.05; //allows affect by electricfield (antiGravity)
     
     [self addChild: _arrow];
     
@@ -251,10 +244,10 @@
     [self addChild: _cursor];
     
     
-    _LivesLabel = [SKLabelNode labelNodeWithFontNamed:@"arial"];
+    _LivesLabel = [SKLabelNode labelNodeWithFontNamed:@"arial"]; //set label font to arial
     _LivesLabel.text = [NSString stringWithFormat:@"Lives: %i",_lives]; //LivesLabel displays amount of lives remaining
-    _LivesLabel.fontSize = 20;
-    _LivesLabel.fontColor = [SKColor whiteColor];
+    _LivesLabel.fontSize = 20; //set label text size
+    _LivesLabel.fontColor = [SKColor whiteColor]; //set text colour to white
     _LivesLabel.position = CGPointMake(300, 180);
     
     [self addChild:_LivesLabel];
@@ -276,7 +269,7 @@
     _victoryText = [SKSpriteNode spriteNodeWithImageNamed:@"victoryText.png"];
     _victoryText.position = CGPointMake(0, 0);
     _victoryText.alpha=0;
-    _victoryText.xScale=0.5;
+    _victoryText.xScale=0.5; //reduce the size by a half on both dimensions so it fits onto the screen
     _victoryText.yScale=0.5;
     [self addChild: _victoryText];
     
@@ -299,7 +292,7 @@
         
         _coin.physicsBody.dynamic = YES; //let coin be affected by gravity and physics bodies
         [_coin runAction:[SKAction fadeOutWithDuration:2.0]]; //make the coin fade away
-        [_coin runAction:[SKAction scaleTo:2.0 duration:2.0]]; //make the coin increase in size
+        [_coin runAction:[SKAction scaleTo:2.0 duration:2.0]];//make the coin fade away
         
         
         double delayInSeconds = 4.0; //The following 3 lines that create a delay in time were copied from this online source: https://goo.gl/WvrAoW
@@ -311,9 +304,9 @@
         
     }
     else if ([self distanceCheck:_arrowFire.position :_coin.position :(_coin.size.width)+15]==true &&_level==_finalLevel){ //if arrow is close to coin and last level
-        _coin.physicsBody.dynamic = YES;
-        [_coin runAction:[SKAction fadeOutWithDuration:2.0]];
-        [_coin runAction:[SKAction scaleTo:2.0 duration:2.0]];
+        _coin.physicsBody.dynamic = YES; //let coin be affected by gravity and physics bodies
+        [_coin runAction:[SKAction fadeOutWithDuration:2.0]]; //make the coin fade away
+        [_coin runAction:[SKAction scaleTo:2.0 duration:2.0]]; //make the coin fade away
         
         _victoryText.alpha=1; //reveal the victory text
         
@@ -535,7 +528,8 @@
             if (_trigger1==0 && _trigger2==0){ //added if statment to avoid the user winning on their last life and still reciving a game over and allow this code to only be run once per loss
                 _gameOver.alpha=1; //show game over
                 _trigger2=1; //run code once
-                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC)); //The following 2 lines that create a delay in time were copied from this online source: https://goo.gl/WvrAoW
+
                 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                     if(_trigger1==0){
                         SKTransition *reveal = [SKTransition doorwayWithDuration:3];
@@ -557,7 +551,7 @@
 
 -(void)update:(CFTimeInterval)currentTime { //a method that is called every frame
 
-    
+    NSLog(@"%f",currentTime);
     if ([self gravityFind] ==1){ //following if statments handle the output of the gravityFind method
         _radGravity.enabled=true;
         _radGravity2.enabled=false;
@@ -589,7 +583,7 @@
     
     
     _now=currentTime;
-    if (_now>=_delay+2){//ensures nextLevel trigger is reset before the user can finish the next level
+    if (_now>=_delay+4.5){//ensures nextLevel trigger is reset before the user can finish the next level
         _trigger1=0;
     }
 

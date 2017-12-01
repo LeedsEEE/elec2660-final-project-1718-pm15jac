@@ -68,7 +68,7 @@
 		FF1228D61FC8535B00E4752A /* LevelDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelDataModel.m; sourceTree = "<group>"; };
 		FF1228D81FC8539600E4752A /* model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = model.h; sourceTree = "<group>"; };
 		FF1228D91FC8539600E4752A /* model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = model.m; sourceTree = "<group>"; };
-		FF1C67211FD1546200F0CFD7 /* Coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Coin.png; path = "Angry Gravity/Coin.png"; sourceTree = "<group>"; };
+		FF1C67211FD1546200F0CFD7 /* Coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Coin.png; sourceTree = "<group>"; };
 		FF7592301FCC23D8002D940D /* greencircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greencircle.png; sourceTree = "<group>"; };
 		FFB2B6001FCD6FEA00F28FBD /* gameOver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameOver.png; sourceTree = "<group>"; };
 		FFB2B6021FCD7C9500F28FBD /* space.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = space.jpg; sourceTree = "<group>"; };
@@ -144,7 +144,6 @@
 		FFBE7B951FBB28210070C70B = {
 			isa = PBXGroup;
 			children = (
-				FF1C67211FD1546200F0CFD7 /* Coin.png */,
 				FFBE7BA01FBB28210070C70B /* Angry Gravity */,
 				FFBE7BC11FBB28220070C70B /* Angry GravityTests */,
 				FFBE7BCC1FBB28220070C70B /* Angry GravityUITests */,
@@ -227,6 +226,7 @@
 		FFF4B5421FCDB5BA00296220 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				FF1C67211FD1546200F0CFD7 /* Coin.png */,
 				FFCF22811FD02E4D00CCE477 /* victoryText.png */,
 				FFCF227F1FD02CA800CCE477 /* cursor.png */,
 				FFCF227D1FD02C7500CCE477 /* instructionText.png */,
